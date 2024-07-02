@@ -1,16 +1,6 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { Box, Button, Card, Chip, CardActions, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
+import { AutoAwesome, CheckCircleRounded } from '@mui/icons-material';
 
 const tiers = [
   {
@@ -123,7 +113,7 @@ export default function Pricing() {
                   </Typography>
                   {tier.title === 'Professional' && (
                     <Chip
-                      icon={<AutoAwesomeIcon />}
+                      icon={<AutoAwesome />}
                       label={tier.subheader}
                       size="small"
                       sx={{
@@ -171,7 +161,7 @@ export default function Pricing() {
                       alignItems: 'center',
                     }}
                   >
-                    <CheckCircleRoundedIcon
+                    <CheckCircleRounded
                       sx={{
                         width: 20,
                         color:

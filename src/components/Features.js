@@ -1,21 +1,10 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import Chip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded';
-import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
+import { Box, Button, Card, Chip, Container, Grid, Link, Stack, Typography } from '@mui/material';
+import { ChevronRightRounded, DevicesRounded, EdgesensorHighRounded, ViewQuiltRounded } from '@mui/icons-material';
 
 const items = [
   {
-    icon: <ViewQuiltRoundedIcon />,
+    icon: <ViewQuiltRounded />,
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
@@ -23,7 +12,7 @@ const items = [
     imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
   },
   {
-    icon: <EdgesensorHighRoundedIcon />,
+    icon: <EdgesensorHighRounded />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
@@ -31,7 +20,7 @@ const items = [
     imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
-    icon: <DevicesRoundedIcon />,
+    icon: <DevicesRounded />,
     title: 'Available on all platforms',
     description:
       'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
@@ -132,7 +121,7 @@ export default function Features() {
                 }}
               >
                 <span>Learn more</span>
-                <ChevronRightRoundedIcon
+                <ChevronRightRounded
                   fontSize="small"
                   sx={{ mt: '1px', ml: '2px' }}
                 />
@@ -226,7 +215,7 @@ export default function Features() {
                       }}
                     >
                       <span>Learn more</span>
-                      <ChevronRightRoundedIcon
+                      <ChevronRightRounded
                         fontSize="small"
                         sx={{ mt: '1px', ml: '2px' }}
                       />

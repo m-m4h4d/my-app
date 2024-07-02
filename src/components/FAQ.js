@@ -1,13 +1,6 @@
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Container, Link, Typography } from '@mui/material';
+import {ExpandMore} from '@mui/icons-material';
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState(false);
@@ -46,7 +39,7 @@ export default function FAQ() {
           onChange={handleChange('panel1')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMore />}
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
@@ -72,7 +65,7 @@ export default function FAQ() {
           onChange={handleChange('panel2')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMore />}
             aria-controls="panel2d-content"
             id="panel2d-header"
           >
@@ -97,7 +90,7 @@ export default function FAQ() {
           onChange={handleChange('panel3')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMore />}
             aria-controls="panel3d-content"
             id="panel3d-header"
           >
@@ -122,7 +115,7 @@ export default function FAQ() {
           onChange={handleChange('panel4')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMore />}
             aria-controls="panel4d-content"
             id="panel4d-header"
           >
