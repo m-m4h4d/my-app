@@ -8,6 +8,8 @@ import LogoCollection from "./LogoCollection";
 import Pricing from "./Pricing";
 import Testimonials from "./Testimonials";
 import ToggleColorMode from "./ToggleColorMode";
+import Statistics from "./Statistics";
+import About from "./About";
 
 export {
     AppAppBar,
@@ -20,4 +22,6 @@ export {
     Pricing,
     Testimonials,
     ToggleColorMode,
+    Statistics,
+    About
 };
