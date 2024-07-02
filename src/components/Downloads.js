@@ -1,47 +1,32 @@
 import * as React from 'react';
-import { Box, Button, Card, Chip, CardActions, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
-import { AutoAwesome, CheckCircleRounded } from '@mui/icons-material';
+import { CardActions, Button, Box, Card, Chip, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
+import { AutoAwesome } from '@mui/icons-material';
 
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
-    description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
-    ],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
+    title: 'MiCK-50',
+    description: 'Download database clustered at 50% identity'
   },
   {
-    title: 'Professional',
-    subheader: 'Recommended',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-      'Dedicated team',
-      'Best deals',
-    ],
-    buttonText: 'Start now',
-    buttonVariant: 'contained',
+    title: 'MiCK-75',
+    description: 'Download database clustered at 75% identity'
   },
   {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
+    title: 'MiCK-80',
+    description: 'Download database clustered at 80% identity'
   },
+  {
+    title: 'MiCK-90',
+    description: 'Download database clustered at 90% identity'
+  },
+  {
+    title: 'Metadata',
+    description: 'Download information of genes, drugs and effects'
+  },
+  {
+    title: 'Datatables',
+    description: 'Download the data tables for the database'
+  }
 ];
 
 export default function Downloads() {
@@ -61,17 +46,11 @@ export default function Downloads() {
       <Box
         sx={{
           width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
+          textAlign: { sm: 'center', md: 'center' },
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary">
-          Pricing
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Quickly build an effective pricing table for your potential customers with
-          this layout. <br />
-          It&apos;s built with default Material UI components with little
-          customization.
+          Downloads
         </Typography>
       </Box>
       <Grid container spacing={3} alignItems="center" justifyContent="center">
@@ -96,6 +75,7 @@ export default function Downloads() {
                   tier.title === 'Professional'
                     ? 'linear-gradient(#033363, #021F3B)'
                     : undefined,
+                height: 'auto',
               }}
             >
               <CardContent>
@@ -114,7 +94,6 @@ export default function Downloads() {
                   {tier.title === 'Professional' && (
                     <Chip
                       icon={<AutoAwesome />}
-                      label={tier.subheader}
                       size="small"
                       sx={{
                         background: (theme) =>
@@ -137,12 +116,6 @@ export default function Downloads() {
                     color: tier.title === 'Professional' ? 'grey.50' : undefined,
                   }}
                 >
-                  <Typography component="h3" variant="h2">
-                    ${tier.price}
-                  </Typography>
-                  <Typography component="h3" variant="h6">
-                    &nbsp; per month
-                  </Typography>
                 </Box>
                 <Divider
                   sx={{
@@ -151,37 +124,7 @@ export default function Downloads() {
                     borderColor: 'grey.500',
                   }}
                 />
-                {tier.description.map((line) => (
-                  <Box
-                    key={line}
-                    sx={{
-                      py: 1,
-                      display: 'flex',
-                      gap: 1.5,
-                      alignItems: 'center',
-                    }}
-                  >
-                    <CheckCircleRounded
-                      sx={{
-                        width: 20,
-                        color:
-                          tier.title === 'Professional'
-                            ? 'primary.light'
-                            : 'primary.main',
-                      }}
-                    />
-                    <Typography
-                      component="text"
-                      variant="subtitle2"
-                      sx={{
-                        color:
-                          tier.title === 'Professional' ? 'grey.200' : undefined,
-                      }}
-                    >
-                      {line}
-                    </Typography>
-                  </Box>
-                ))}
+                {tier.description}
               </CardContent>
               <CardActions>
                 <Button
@@ -191,7 +134,7 @@ export default function Downloads() {
                   href="/material-ui/getting-started/templates/checkout/"
                   target="_blank"
                 >
-                  {tier.buttonText}
+                  Download
                 </Button>
               </CardActions>
             </Card>

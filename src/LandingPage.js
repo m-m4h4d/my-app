@@ -20,6 +20,7 @@ export default function LandingPage() {
       <Navbar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
+        <Divider />
         <Statistics />
         <Divider />
         <Highlights />

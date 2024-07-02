@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Container, Link, Typography, useTheme } from '@mui/material';
+import { Box, Container, Link, useTheme } from '@mui/material';
 import { ll, dl } from '../assets';
 
 const logoStyle = {
@@ -74,9 +74,6 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
-            Product
-          </Typography>
           <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('hero')}>
             Home
           </Link>
@@ -97,9 +94,6 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
-            Company
-          </Typography>
           <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('about')}>
             About us
           </Link>
