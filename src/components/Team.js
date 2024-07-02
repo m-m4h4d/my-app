@@ -73,7 +73,7 @@ export default function Team() {
                   </Typography>
                   <CardContent>
                     <Typography variant="body1" color="text.secondary">
-                      <Link>{member.email}</Link>
+                      <Link href={member.email}>{member.email}</Link>
                     </Typography>
                   </CardContent>
                 </Box>

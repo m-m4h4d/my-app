@@ -1,23 +1,31 @@
 import * as React from 'react';
-import { Box, Button, Container, IconButton, Link, Stack, TextField, Typography } from '@mui/material';
-import { Facebook, LinkedIn, Twitter } from '@mui/icons-material';
+import { Box, Container, Link, Typography, useTheme } from '@mui/material';
+import { ll, dl } from '../assets';
 
 const logoStyle = {
-  width: '140px',
+  width: '100%',
   height: 'auto',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '999px 0 0 999px',
 };
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
-      {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
-
 export default function Footer() {
+  const theme = useTheme();
+  
+  const scrollToSection = (sectionId) => {
+    const sectionElement = document.getElementById(sectionId);
+    const offset = 128;
+    if (sectionElement) {
+      const targetScroll = sectionElement.offsetTop - offset;
+      sectionElement.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <Container
       sx={{
@@ -45,40 +53,18 @@ export default function Footer() {
             minWidth: { xs: '100%', sm: '60%' },
           }}
         >
-          <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-            <Box sx={{ ml: '-15px' }}>
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+          <Box sx={{ width: { xs: '100%', sm: '60%' }, justifyContent: 'center', alignItems: 'center' }}>
+            <Box sx={{ ml: '-15px', justifyContent: 'center', alignItems: 'center' }}>
+              {theme.palette.mode === 'light' ? (
+                <>
+                  <img src={dl} alt="Hero" style={logoStyle} />
+                </>
+              ) : (
+                <>
+                  <img src={ll} alt="Hero" style={logoStyle} />
+                </>
+              )}
             </Box>
-            <Typography variant="body2" fontWeight={600} gutterBottom>
-              Newsletter
-            </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
-              Subscribe to our newsletter for weekly updates and promotions.
-            </Typography>
-            <Stack direction="row" spacing={1} useFlexGap>
-              <TextField
-                id="outlined-basic"
-                hiddenLabel
-                size="small"
-                variant="outlined"
-                fullWidth
-                aria-label="Enter your email address"
-                placeholder="Your email address"
-                inputProps={{
-                  autoComplete: 'off',
-                  'aria-label': 'Enter your email address',
-                }}
-              />
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
-                Subscribe
-              </Button>
-            </Stack>
           </Box>
         </Box>
         <Box
@@ -91,20 +77,17 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
-            Features
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('hero')}>
+            Home
           </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
-          </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('highlights')}>
             Highlights
           </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('search')}>
+            Search
           </Link>
-          <Link color="text.secondary" href="#">
-            FAQs
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('downloads')}>
+            Downloads
           </Link>
         </Box>
         <Box
@@ -117,93 +100,19 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('about')}>
             About us
           </Link>
-          <Link color="text.secondary" href="#">
-            Careers
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('faq')}>
+            FAQs
           </Link>
-          <Link color="text.secondary" href="#">
-            Press
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('team')}>
+            Team
           </Link>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Legal
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Terms
-          </Link>
-          <Link color="text.secondary" href="#">
-            Privacy
-          </Link>
-          <Link color="text.secondary" href="#">
-            Contact
+          <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('statistics')}>
+            Statistics
           </Link>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          pt: { xs: 4, sm: 8 },
-          width: '100%',
-          borderTop: '1px solid',
-          borderColor: 'divider',
-        }}
-      >
-        <div>
-          <Link color="text.secondary" href="#">
-            Privacy Policy
-          </Link>
-          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
-            &nbsp;•&nbsp;
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Terms of Service
-          </Link>
-          <Copyright />
-        </div>
-        <Stack
-          direction="row"
-          justifyContent="left"
-          spacing={1}
-          useFlexGap
-          sx={{
-            color: 'text.secondary',
-          }}
-        >
-          <IconButton
-            color="inherit"
-            href="https://github.com/mui"
-            aria-label="GitHub"
-            sx={{ alignSelf: 'center' }}
-          >
-            <Facebook />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            href="https://x.com/MaterialUI"
-            aria-label="X"
-            sx={{ alignSelf: 'center' }}
-          >
-            <Twitter />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            href="https://www.linkedin.com/company/mui/"
-            aria-label="LinkedIn"
-            sx={{ alignSelf: 'center' }}
-          >
-            <LinkedIn />
-          </IconButton>
-        </Stack>
       </Box>
     </Container>
   );

@@ -44,10 +44,10 @@ const tiers = [
   },
 ];
 
-export default function Pricing() {
+export default function Downloads() {
   return (
     <Container
-      id="pricing"
+      id="downloads"
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },

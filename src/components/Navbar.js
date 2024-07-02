@@ -1,17 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Box, AppBar, Toolbar, Button, Container, Divider, Typography, MenuItem, Drawer } from '@mui/material';
+import { Box, AppBar, Toolbar, Button, Container, Divider, Typography, MenuItem, Drawer, useTheme } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import { ToggleColorMode } from './';
+import { ll, dl } from '../assets';
 
 const logoStyle = {
   width: '140px',
   height: 'auto',
   cursor: 'pointer',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '999px 0 0 999px',
 };
 
-function AppAppBar({ mode, toggleColorMode }) {
+function Navbar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -74,15 +79,25 @@ function AppAppBar({ mode, toggleColorMode }) {
                 px: 0,
               }}
             >
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+              {theme.palette.mode === 'light' ? (
+                <>
+                  <img src={dl} alt="Hero" style={logoStyle} />
+                </>
+              ) : (
+                <>
+                  <img src={ll} alt="Hero" style={logoStyle} />
+                </>
+              )}
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Divider orientation="vertical" flexItem />
+                <MenuItem
+                  onClick={() => scrollToSection('hero')}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="text.primary">
+                    Home
+                  </Typography>
+                </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection('statistics')}
                   sx={{ py: '6px', px: '12px' }}
@@ -100,19 +115,19 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('features')}
+                  onClick={() => scrollToSection('search')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Features
+                    Search
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('pricing')}
+                  onClick={() => scrollToSection('downloads')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Pricing
+                    Downloads
                   </Typography>
                 </MenuItem>
                 <MenuItem
@@ -179,12 +194,23 @@ function AppAppBar({ mode, toggleColorMode }) {
                   >
                     <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
+                  <br />
                   <Divider />
+                  <br />
+                  <MenuItem onClick={() => scrollToSection('hero')}>
+                    Home
+                  </MenuItem>
                   <MenuItem onClick={() => scrollToSection('statistics')}>
                     Statistics
                   </MenuItem>
                   <MenuItem onClick={() => scrollToSection('highlights')}>
                     Highlights
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('search')}>
+                    Search
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection('downloads')}>
+                    Downloads
                   </MenuItem>
                   <MenuItem onClick={() => scrollToSection('about')}>
                     About Us
@@ -205,9 +231,9 @@ function AppAppBar({ mode, toggleColorMode }) {
   );
 }
 
-AppAppBar.propTypes = {
+Navbar.propTypes = {
   mode: PropTypes.oneOf(['dark', 'light']).isRequired,
   toggleColorMode: PropTypes.func.isRequired,
 };
 
-export default AppAppBar;
+export default Navbar;
