@@ -1,4 +1,6 @@
-# Landing page template
+# Microbial Chemoresistance Knowledgebase (MiCK)
+
+## Landing page template
 
 ## Usage
 
