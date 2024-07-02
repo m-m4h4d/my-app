@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { alpha, Box, Button, Container, Link, Stack, TextField, Typography } from '@mui/material';
+import { alpha, Box, Button, Container, Link, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { Pd0, Pd1, Pl0, Pl1 } from '../assets';
 
 export default function Hero() {
+  const theme = useTheme();
+  
   return (
     <Box
       id="hero"
@@ -107,8 +109,17 @@ export default function Hero() {
                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
         >
-          <img src={Pl0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
-          <img src={Pl1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+          {theme.palette.mode === 'light' ? (
+            <>
+              <img src={Pl0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+              <img src={Pl1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+            </>
+          ) : (
+            <>
+              <img src={Pd0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+              <img src={Pd1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+            </>
+          )}
         </Box>
       </Container>
     </Box>
