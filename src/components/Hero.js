@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { alpha, Box, Button, Container, Link, Stack, TextField, Typography } from '@mui/material';
+import { Pd0, Pd1, Pl0, Pl1 } from '../assets';
 
 export default function Hero() {
   return (
@@ -35,27 +36,26 @@ export default function Hero() {
               fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
-            Our latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                fontSize: 'clamp(3rem, 10vw, 4rem)',
-                color: (theme) =>
-                  theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
-              }}
-            >
-              products
-            </Typography>
+            Welcome to the&nbsp;
+          </Typography>
+          <Typography
+            component="span"
+            variant="h1"
+            textAlign="center"
+            sx={{
+              fontSize: 'clamp(3rem, 10vw, 4rem)',
+              color: (theme) =>
+                theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
+            }}
+          >
+            Microbial Chemoresistance Knowledgebase (MiCK)
           </Typography>
           <Typography
             textAlign="center"
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
+            Cancer remains one of the most formidable health challenges globally, with millions of new cases and deaths reported annually. Chemoresistance significantly impacts the efficacy of cancer treatment, often leading to treatment failure and disease progression. MiCK is dedicated to addressing the challenge of chemoresistance in cancer by serving as a resource for microbial gene sequences associated with treatment efficacy. Our goal is to facilitate researchers and healthcare professionals in further understanding and mitigation of chemoresistance across various cancer types.
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
@@ -89,16 +89,11 @@ export default function Hero() {
           </Typography>
         </Stack>
         <Box
-          id="image"
           sx={(theme) => ({
             mt: { xs: 8, sm: 10 },
             alignSelf: 'center',
-            height: { xs: 200, sm: 700 },
+            height: '100%',
             width: '100%',
-            backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/hero-light.png")'
-                : 'url("/static/images/templates/templates-images/hero-dark.png")',
             backgroundSize: 'cover',
             borderRadius: '10px',
             outline: '1px solid',
@@ -111,7 +106,10 @@ export default function Hero() {
                 ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
-        />
+        >
+          <img src={Pl0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+          <img src={Pl1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+        </Box>
       </Container>
     </Box>
   );

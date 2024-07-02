@@ -1,44 +1,28 @@
 import * as React from 'react';
 import { Box, Card, Container, Grid, Stack, Typography } from '@mui/material';
-import { AutoFixHighRounded, ConstructionRounded, QueryStatsRounded, SettingsSuggestRounded, SupportAgentRounded, ThumbUpAltRounded } from '@mui/icons-material';
+import { AutoFixHighRounded, ConstructionRounded, QueryStatsRounded, SettingsSuggestRounded, SupportAgentRounded } from '@mui/icons-material';
 
 const items = [
   {
-    icon: <SettingsSuggestRounded />,
-    title: 'Adaptable performance',
-    description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+    icon: <QueryStatsRounded />,
+    title: 'Perform search on genes of their interest using the names of the genes'
   },
   {
     icon: <ConstructionRounded />,
-    title: 'Built to last',
-    description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
-  },
-  {
-    icon: <ThumbUpAltRounded />,
-    title: 'Great user experience',
-    description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+    title: 'Use drug name to find all the target gene sequences and their effects'
   },
   {
     icon: <AutoFixHighRounded />,
-    title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+    title: 'Search the effect to find out which gene will cause such effects'
   },
   {
     icon: <SupportAgentRounded />,
-    title: 'Reliable support',
-    description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+    title: 'In FAQ’s users can view some of the most frequently asked questions'
   },
   {
-    icon: <QueryStatsRounded />,
-    title: 'Precision in every detail',
-    description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
-  },
+    icon: <SettingsSuggestRounded />,
+    title: 'In download interface, users have access to download different datasets '
+  }
 ];
 
 export default function Highlights() {
@@ -70,15 +54,13 @@ export default function Highlights() {
           <Typography component="h2" variant="h4">
             Highlights
           </Typography>
-          <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+          <Typography variant="h6" sx={{ color: 'grey.400' }}>
+            <b>In MiCK, users can:</b>
           </Typography>
         </Box>
-        <Grid container spacing={2.5}>
+        <Grid container spacing={2.5} justifyContent="center">
           {items.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index} align="center">
               <Stack
                 direction="column"
                 color="inherit"
@@ -98,9 +80,6 @@ export default function Highlights() {
                 <div>
                   <Typography fontWeight="medium" gutterBottom>
                     {item.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'grey.400' }}>
-                    {item.description}
                   </Typography>
                 </div>
               </Stack>
