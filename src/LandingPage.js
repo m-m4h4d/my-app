@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { AppAppBar, Statistics, Hero, LogoCollection, Highlights, Pricing, Features, Testimonials, About, FAQ, Footer } from './components';
+import { AppAppBar, Statistics, Hero, Highlights, Pricing, Features, Team, About, FAQ, Footer } from './components';
 import getLPTheme from './getLPTheme';
 
 export default function LandingPage() {
@@ -25,16 +25,15 @@ export default function LandingPage() {
         <Divider />
         <Highlights />
         <Divider />
-        <LogoCollection />
         <Features />
-        <Divider />
-        <Testimonials />
         <Divider />
         <Pricing />
         <Divider />
         <About />
         <Divider />
         <FAQ />
+        <Divider />
+        <Team />
         <Divider />
         <Footer />
       </Box>

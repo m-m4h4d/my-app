@@ -4,12 +4,11 @@ import Features from "./Features";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Highlights from "./Highlights";
-import LogoCollection from "./LogoCollection";
 import Pricing from "./Pricing";
-import Testimonials from "./Testimonials";
 import ToggleColorMode from "./ToggleColorMode";
 import Statistics from "./Statistics";
 import About from "./About";
+import Team from "./Team";
 
 export {
     AppAppBar,
@@ -18,9 +17,8 @@ export {
     Footer,
     Hero,
     Highlights,
-    LogoCollection,
     Pricing,
-    Testimonials,
+    Team,
     ToggleColorMode,
     Statistics,
     About
