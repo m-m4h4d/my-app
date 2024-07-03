@@ -29,6 +29,16 @@ const tiers = [
 ];
 
 export default function Downloads() {
+  const [hoveredCard, setHoveredCard] = React.useState(null);
+
+  const handleMouseEnter = (index) => {
+    setHoveredCard(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
+
   return (
     <Container
       id="downloads"
@@ -53,7 +63,7 @@ export default function Downloads() {
         </Typography>
       </Box>
       <Grid container spacing={3} alignItems="center" justifyContent="center">
-        {tiers.map((tier) => (
+        {tiers.map((tier, index) => (
           <Grid
             item
             key={tier.title}
@@ -62,13 +72,16 @@ export default function Downloads() {
             md={4}
           >
             <Card
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
               sx={{
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 4,
-                border: tier.title === 'Professional' ? '1px solid' : undefined,
+                border: undefined,
                 '&:hover': {
+                  border: '1px solid',
                   borderColor: 'primary.main',
                   background: 'linearGradient(#033363, #021F3B)',
                   color: 'grey.100',
@@ -102,7 +115,7 @@ export default function Downloads() {
               <CardActions>
                 <Button
                   fullWidth
-                  variant="outlined"
+                  variant={hoveredCard === index ? "contained" : "outlined"}
                   component="a"
                   target="_blank"
                 >
