@@ -4,27 +4,33 @@ import { CardActions, Button, Box, Card, CardContent, Container, Divider, Grid, 
 const tiers = [
     {
         title: 'MiCK-50',
-        description: 'Download database clustered at 50% identity'
+        description: 'Download database clustered at 50% identity',
+        file: 'File_1.faa'
     },
     {
         title: 'MiCK-75',
-        description: 'Download database clustered at 75% identity'
+        description: 'Download database clustered at 75% identity',
+        file: 'File_2.faa'
     },
     {
         title: 'MiCK-80',
-        description: 'Download database clustered at 80% identity'
+        description: 'Download database clustered at 80% identity',
+        file: 'File_3.faa'
     },
     {
         title: 'MiCK-90',
-        description: 'Download database clustered at 90% identity'
+        description: 'Download database clustered at 90% identity',
+        file: 'File_4.faa'
     },
     {
         title: 'MiCK-100',
-        description: 'Download database clustered at 100% identity'
+        description: 'Download database clustered at 100% identity',
+        file: 'File_5.faa'
     },
     {
         title: 'Metadata',
-        description: 'Download information of genes, drugs and effects'
+        description: 'Download information of genes, drugs and effects',
+        file: 'File_6.xlsx'
     },
 ];
 
@@ -61,6 +67,9 @@ export default function Downloads() {
                 <Typography component="h2" variant="h4" color="text.primary">
                     Downloads
                 </Typography>
+                <Typography variant="body1" color="text.secondary">
+                    Download table that have Database data table
+                </Typography>
             </Box>
             <Grid container spacing={3} alignItems="center" justifyContent="center">
                 {tiers.map((tier, index) => (
@@ -82,7 +91,7 @@ export default function Downloads() {
                                 border: undefined,
                                 borderColor: undefined,
                                 background: undefined,
-                                transition: 'border 0.2s ease-in-out, background 0.4s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out',
+                                transition: 'all 0.2s ease-in-out',
                                 color: '',
                                 '&:hover': {
                                     border: '1px solid',
@@ -120,7 +129,8 @@ export default function Downloads() {
                                     fullWidth
                                     variant={hoveredCard === index ? "contained" : "outlined"}
                                     component="a"
-                                    target="_blank"
+                                    href={`../data/${tier.file}`}
+                                    download
                                 >
                                     Download
                                 </Button>
