@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
+import axios from 'axios';
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -20,10 +21,8 @@ const StyledMenu = styled((props) => (
         borderRadius: 6,
         marginTop: theme.spacing(1),
         minWidth: 180,
-        color:
-            theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
-        boxShadow:
-            'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+        color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+        boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         '& .MuiMenu-list': {
             padding: '4px 0',
         },
@@ -34,42 +33,26 @@ const StyledMenu = styled((props) => (
                 marginRight: theme.spacing(1.5),
             },
             '&:active': {
-                backgroundColor: alpha(
-                    theme.palette.primary.main,
-                    theme.palette.action.selectedOpacity,
-                ),
+                backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
             },
         },
     },
 }));
 
 const drugs = [
-    {
-        name: 'Capecitabine'
-    },
-    {
-        name: 'FU'
-    },
-    {
-        name: 'Gemcitabine'
-    },
-    {
-        name: 'Irinotecan'
-    },
-    {
-        name: 'Oxaliplatin'
-    },
-    {
-        name: 'Riluzole'
-    },
-    {
-        name: 'Romidepsin'
-    }
+    { name: 'Capecitabine' },
+    { name: 'FU' },
+    { name: 'Gemcitabine' },
+    { name: 'Irinotecan' },
+    { name: 'Oxaliplatin' },
+    { name: 'Riluzole' },
+    { name: 'Romidepsin' }
 ];
 
 export default function Search() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedDrug, setSelectedDrug] = React.useState('Drug');
+    const [searchResults, setSearchResults] = React.useState([]);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -85,6 +68,17 @@ export default function Search() {
     const handleDeselect = () => {
         setSelectedDrug('Drug');
         setAnchorEl(null);
+    };
+
+    const handleSearch = () => {
+        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+        axios.get(`/search?q=${query}`)
+            .then(response => {
+                setSearchResults(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error searching the data!', error);
+            });
     };
 
     return (
@@ -166,32 +160,42 @@ export default function Search() {
                                 'aria-label': 'Type Keywords...',
                             }}
                         />
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick={handleSearch}>
                             Search
                         </Button>
                     </Stack>
                 </Stack>
-                <Box
-                    sx={(theme) => ({
-                        mt: { xs: 8, sm: 10 },
-                        pt: { xs: 4, sm: 6 },
-                        alignSelf: 'center',
-                        height: '100%',
-                        width: '100%',
-                        backgroundSize: 'cover',
-                        borderRadius: '10px',
-                        outline: '1px solid',
-                        outlineColor:
-                            theme.palette.mode === 'light'
-                                ? alpha('#BFCCD9', 0.5)
-                                : alpha('#9CCCFC', 0.1),
-                        boxShadow:
-                            theme.palette.mode === 'light'
-                                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-                    })}
-                >
-                </Box>
+                {searchResults.length > 0 && (
+                    <Box
+                        sx={(theme) => ({
+                            mt: { xs: 8, sm: 10 },
+                            pt: { xs: 4, sm: 6 },
+                            alignSelf: 'center',
+                            height: '100%',
+                            width: '100%',
+                            backgroundSize: 'cover',
+                            borderRadius: '10px',
+                            outline: '1px solid',
+                            outlineColor:
+                                theme.palette.mode === 'light'
+                                    ? alpha('#BFCCD9', 0.5)
+                                    : alpha('#9CCCFC', 0.1),
+                            boxShadow:
+                                theme.palette.mode === 'light'
+                                    ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
+                                    : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
+                        })}
+                    >
+                        <Typography variant="h6" color="text.primary">
+                            Search Results:
+                        </Typography>
+                        {searchResults.map((result, index) => (
+                            <Typography key={index} variant="body2" color="text.secondary">
+                                {result.FullName} ({result.Drug}) - {result.Effect}
+                            </Typography>
+                        ))}
+                    </Box>
+                )}
             </Container>
         </Box>
     );
