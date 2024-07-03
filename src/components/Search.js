@@ -106,7 +106,7 @@ export default function Search() {
                 }}
             >
                 <Typography component="h2" variant="h4" color="text.primary">
-                    MiCk Search Page
+                    MiCK Search Page
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
                     Search page allows a keyword search against the sequences of MiCK database.

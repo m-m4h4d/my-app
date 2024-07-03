@@ -1,1 +1,27 @@
 AccessionNo,Type,Drug,FullName,Original_Accession,Effect
+CE_Uniprot42,CE,Capecitabine,carboxyl esterase,>tr|A0A1S5QM34|A0A1S5QM34_9BACT,Chemoresistance
+DHP_Uniprot21,DHP,Capecitabine,dihydropyrimidinase,>tr|A0A081KFG8|A0A081KFG8_9GAMM,Chemoresistance
+UMP_CMP_Uniprot18,UMP,Capecitabine,UMP-CMP kinase,>tr|A0A2N6GBW6|A0A2N6GBW6_9GAMM,Chemosenstivity
+BUP_Uniprot23,BUP,Capecitabine,Beta-ureidopropionase,>tr|A0A380BWH6|A0A380BWH6_9STAP,Drug metabolism
+UK_Uniprot46,UK,Capecitabine,Uridine kinase,>tr|A0A066UPK3|A0A066UPK3_9VIBR,Substrate metabolism
+PRT_Uniprot76,PRT,FU,uracil phosphoribosyltransferase,>tr|A0A0A3A1T9|A0A0A3A1T9_9PAST,Chemoresistance
+CD_Uniprot20,CD,Gemictabine,cytidine deaminase,>tr|A0A0S4QFT0|A0A0S4QFT0_9ACTN,Chemoresistance
+RNR_Uniprot106,RNR,Gemictabine,Ribonucleotide reductase,>tr|A0A045JP72|A0A045JP72_MYCTX,substrate metabolism
+BGU_Uniprot1444,BGU,Irinotecan,beta-glucuronidase,>sp|Q1G9Z4|BGAL_LACDA,Chemoresistance
+GUST_Uniprot5,GUST,Irinotecan,glucuronosyltransferase,>sp|A4F7P3|ERYC3_SACEN,Chmoresistance/chemosenstivity
+DTI_Uniprot144,DTI,Irinotecan,DNA-Topoisomerase,>tr|A0A034T6J9|A0A034T6J9_9GAMM,cofactor
+BUTY_Uniprot24,BUTY,Oxaliplatin,Butyrate,>sp|P50457|PUUE_ECOLI,Chemoresistance
+HOG_Uniprot184,HOG,Riluzole,hydroxyglutarate,>tr|A0A2P5GNM2|A0A2P5GNM2_9ENTR,Chemoresistance
+HDA_Uniprot9,HDA,Romidepsin,Histone deacetylase,>sp|Q9HXM1|HDAH_PSEAE,Chemoresistance
+CDS_Uniprot10,CDS,Gemictabine,cysteine_desulfurase,>sp|P27838|CYAY_ECOLI,Chemoresistance
+DOC_Uniprot1605,DOC,Gemictabine,deoxycytidine kinase,>tr|T5HI74|T5HI74_BACLI,Chemoresistance
+DUTP_Uniprot24,DUTP,Capecitabine,dUTP diphosphatase,>tr|A0A0E1CFE3|A0A0E1CFE3_KLEPN,chemoresistance
+GLU_Uniprot65,GLU,Oxaliplatin,glutathione,>sp|P75849|GLO22_ECOLI,chemoresistance
+GST_Uniprot99,GST,Oxaliplatin,glutathione S-transferase,>tr|A0A060LUZ8|A0A060LUZ8_9BACI,Chemoresistance
+MET_Uniprot10,MET,Oxaliplatin,metallothionein,>tr|A0A011PDN5|A0A011PDN5_9PROT,chemoresistance
+NDK_Uniprot198,NDK,Capecitabine,Nucleoside diphosphate kinase,>tr|A0A011TX52|A0A011TX52_9HYPH,Chemoresistance
+PNP_Uniprot26,PNP,Gemictabine,Purine nucleoside phosphorylase,>tr|A0A011NKP9|A0A011NKP9_9PROT,chemoresistance
+TK_Uniprot29,TK,Gemictabine,Thymidine kinase,>tr|A0A069JZ53|A0A069JZ53_9ACTN,chemoresistance
+TP_Uniprot70,TP,Capecitabine,thymidine phosphorylase,>tr|A0A066RX48|A0A066RX48_9GAMM,Chemoresistance
+TS_Uniprot35,TS,FU,Thymidylate synthase,>tr|A0A011QFW1|A0A011QFW1_9PROT,Chemoresistance
+UP_Uniprot79,UP,Capecitabine,uridine phosphorylase,>tr|A0A366DTN5|A0A366DTN5_9HYPH,Chemoresistance
