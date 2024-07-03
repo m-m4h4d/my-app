@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, AppBar, Toolbar, Button, Container, Divider, Typography, MenuItem, Drawer, useTheme } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import { ToggleColorMode } from './';
-import { ll, dl } from '../assets';
+import { ll, dl } from '../assets/images';
 
 const logoStyle = {
     width: '140px',

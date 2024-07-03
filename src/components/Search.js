@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
+import axios from 'axios';
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -106,7 +107,8 @@ export default function Search() {
                         spacing={1}
                         useFlexGap
                         sx={{ pt: 2, width: '100%' }}
-                    ><div>
+                    >
+                        <div>
                             <Button
                                 id="demo-customized-button"
                                 aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -152,6 +154,27 @@ export default function Search() {
                         </Button>
                     </Stack>
                 </Stack>
+                <Box
+                    sx={(theme) => ({
+                        mt: { xs: 8, sm: 10 },
+                        pt: { xs: 4, sm: 6 },
+                        alignSelf: 'center',
+                        height: '100%',
+                        width: '100%',
+                        backgroundSize: 'cover',
+                        borderRadius: '10px',
+                        outline: '1px solid',
+                        outlineColor:
+                            theme.palette.mode === 'light'
+                                ? alpha('#BFCCD9', 0.5)
+                                : alpha('#9CCCFC', 0.1),
+                        boxShadow:
+                            theme.palette.mode === 'light'
+                                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
+                                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
+                    })}
+                >
+                </Box>
             </Container>
         </Box>
     );

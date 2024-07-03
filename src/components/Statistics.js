@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha, Box, Container, Typography, useTheme } from '@mui/material';
-import { Pd0, Pd1, Pl0, Pl1 } from '../assets';
+import { Pd0, Pd1, Pl0, Pl1 } from '../assets/images';
 
 export default function Statistics() {
     const theme = useTheme();
