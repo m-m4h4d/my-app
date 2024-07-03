@@ -69,12 +69,21 @@ const drugs = [
 
 export default function Search() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [selectedDrug, setSelectedDrug] = React.useState('Drug');
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (drug) => {
+        setAnchorEl(null);
+        if (drug) {
+            setSelectedDrug(drug.name);
+        }
+    };
+
+    const handleDeselect = () => {
+        setSelectedDrug('Drug');
         setAnchorEl(null);
     };
 
@@ -124,7 +133,7 @@ export default function Search() {
                                 onClick={handleClick}
                                 endIcon={<KeyboardArrowDown />}
                             >
-                                Drug
+                                {selectedDrug}
                             </Button>
                             <StyledMenu
                                 MenuListProps={{
@@ -132,10 +141,13 @@ export default function Search() {
                                 }}
                                 anchorEl={anchorEl}
                                 open={open}
-                                onClose={handleClose}
+                                onClose={() => handleClose(null)}
                             >
+                                <MenuItem onClick={handleDeselect}>
+                                    None
+                                </MenuItem>
                                 {drugs.map((drug, index) => (
-                                    <MenuItem key={index} onClick={handleClose}>
+                                    <MenuItem key={index} onClick={() => handleClose(drug)}>
                                         {drug.name}
                                     </MenuItem>
                                 ))}
