@@ -24,20 +24,21 @@ export default function Statistics() {
                 }}
             >
                 <Typography
-            variant="h1"
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignSelf: 'center',
-              textAlign: 'center',
-              fontSize: 'clamp(3.5rem, 10vw, 4rem)',
-            }}
-          >
-            Key Statistics
-          </Typography>
+                    variant="h1"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        alignSelf: 'center',
+                        textAlign: 'center',
+                        fontSize: 'clamp(3.5rem, 10vw, 4rem)',
+                    }}
+                >
+                    Key Statistics
+                </Typography>
                 <Box
                     sx={(theme) => ({
                         mt: { xs: 8, sm: 10 },
+                        pt: { xs: 4, sm: 6 },
                         alignSelf: 'center',
                         height: '100%',
                         width: '100%',

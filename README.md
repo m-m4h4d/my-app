@@ -14,7 +14,7 @@
 
 <!-- #default-branch-switch -->
 
-View the demo at https://mui.com/material-ui/getting-started/templates/landing-page/.
+View the demo at <https://mui.com/material-ui/getting-started/templates/landing-page/>.
 
 ## Getting Started with Create React App
 

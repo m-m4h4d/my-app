@@ -7,36 +7,36 @@ import { Navbar, Statistics, Hero, Highlights, Downloads, Search, Team, About, F
 import getLPTheme from './getLPTheme';
 
 export default function LandingPage() {
-  const [mode, setMode] = React.useState('light');
-  const LPtheme = createTheme(getLPTheme(mode));
+    const [mode, setMode] = React.useState('light');
+    const LPtheme = createTheme(getLPTheme(mode));
 
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+    const toggleColorMode = () => {
+        setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    };
 
-  return (
-    <ThemeProvider theme={LPtheme}>
-      <CssBaseline />
-      <Navbar mode={mode} toggleColorMode={toggleColorMode} />
-      <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
-        <Divider />
-        <Statistics />
-        <Divider />
-        <Highlights />
-        <Divider />
-        <Search />
-        <Divider />
-        <Downloads />
-        <Divider />
-        <About />
-        <Divider />
-        <FAQ />
-        <Divider />
-        <Team />
-        <Divider />
-        <Footer />
-      </Box>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={LPtheme}>
+            <CssBaseline />
+            <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+            <Hero />
+            <Box sx={{ bgcolor: 'background.default' }}>
+                <Divider />
+                <Statistics />
+                <Divider />
+                <Highlights />
+                <Divider />
+                <Search />
+                <Divider />
+                <Downloads />
+                <Divider />
+                <About />
+                <Divider />
+                <FAQ />
+                <Divider />
+                <Team />
+                <Divider />
+                <Footer />
+            </Box>
+        </ThemeProvider>
+    );
 }
