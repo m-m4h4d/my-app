@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
-import axios from 'axios';
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -44,21 +43,27 @@ const StyledMenu = styled((props) => (
     },
 }));
 
-const items = [
+const drugs = [
     {
-        title: '5-FU'
+        name: 'Capecitabine'
     },
     {
-        title: 'Irinotecan'
+        name: 'FU'
     },
     {
-        title: 'Capecitabine'
+        name: 'Gemcitabine'
     },
     {
-        title: 'Gemcitabine'
+        name: 'Irinotecan'
     },
     {
-        title: 'Oxaliplatin'
+        name: 'Oxaliplatin'
+    },
+    {
+        name: 'Riluzole'
+    },
+    {
+        name: 'Romidepsin'
     }
 ];
 
@@ -129,9 +134,9 @@ export default function Search() {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                {items.map((item, index) => (
+                                {drugs.map((drug, index) => (
                                     <MenuItem key={index} onClick={handleClose}>
-                                        {item.title}
+                                        {drug.name}
                                     </MenuItem>
                                 ))}
                             </StyledMenu>
