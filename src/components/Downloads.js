@@ -80,10 +80,14 @@ export default function Downloads() {
                 flexDirection: 'column',
                 gap: 4,
                 border: undefined,
+                borderColor: undefined,
+                background: undefined,
+                transition: 'border 0.2s ease-in-out, background 0.35s ease-in-out, color 0.1s ease-in-out, border-color 0.2s ease-in-out',
+                color: '',
                 '&:hover': {
                   border: '1px solid',
                   borderColor: 'primary.main',
-                  background: 'linearGradient(#033363, #021F3B)',
+                  background: 'linear-gradient(to bottom, #033363, #021F3B)',
                   color: 'grey.100',
                 },
                 height: 'auto',
@@ -96,7 +100,6 @@ export default function Downloads() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    color: '',
                   }}
                 >
                   <Typography component="h3" variant="h6">
