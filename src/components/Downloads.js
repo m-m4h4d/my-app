@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { CardActions, Button, Box, Card, Chip, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
-import { AutoAwesome } from '@mui/icons-material';
+import { CardActions, Button, Box, Card, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
 
 const tiers = [
   {
@@ -20,13 +19,13 @@ const tiers = [
     description: 'Download database clustered at 90% identity'
   },
   {
+    title: 'MiCK-100',
+    description: 'Download database clustered at 100% identity'
+  },
+  {
     title: 'Metadata',
     description: 'Download information of genes, drugs and effects'
   },
-  {
-    title: 'Datatables',
-    description: 'Download the data tables for the database'
-  }
 ];
 
 export default function Downloads() {
@@ -59,7 +58,7 @@ export default function Downloads() {
             item
             key={tier.title}
             xs={12}
-            sm={tier.title === 'Enterprise' ? 12 : 6}
+            sm={6}
             md={4}
           >
             <Card
@@ -69,12 +68,11 @@ export default function Downloads() {
                 flexDirection: 'column',
                 gap: 4,
                 border: tier.title === 'Professional' ? '1px solid' : undefined,
-                borderColor:
-                  tier.title === 'Professional' ? 'primary.main' : undefined,
-                background:
-                  tier.title === 'Professional'
-                    ? 'linear-gradient(#033363, #021F3B)'
-                    : undefined,
+                '&:hover': {
+                  borderColor: 'primary.main',
+                  background: 'linearGradient(#033363, #021F3B)',
+                  color: 'grey.100',
+                },
                 height: 'auto',
               }}
             >
@@ -85,37 +83,12 @@ export default function Downloads() {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    color: tier.title === 'Professional' ? 'grey.100' : '',
+                    color: '',
                   }}
                 >
                   <Typography component="h3" variant="h6">
                     {tier.title}
                   </Typography>
-                  {tier.title === 'Professional' && (
-                    <Chip
-                      icon={<AutoAwesome />}
-                      size="small"
-                      sx={{
-                        background: (theme) =>
-                          theme.palette.mode === 'light' ? '' : 'none',
-                        backgroundColor: 'primary.contrastText',
-                        '& .MuiChip-label': {
-                          color: 'primary.dark',
-                        },
-                        '& .MuiChip-icon': {
-                          color: 'primary.dark',
-                        },
-                      }}
-                    />
-                  )}
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    color: tier.title === 'Professional' ? 'grey.50' : undefined,
-                  }}
-                >
                 </Box>
                 <Divider
                   sx={{
@@ -129,9 +102,8 @@ export default function Downloads() {
               <CardActions>
                 <Button
                   fullWidth
-                  variant={tier.buttonVariant}
+                  variant="outlined"
                   component="a"
-                  href="/material-ui/getting-started/templates/checkout/"
                   target="_blank"
                 >
                   Download
