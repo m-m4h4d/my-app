@@ -42,7 +42,7 @@ const StyledMenu = styled((props) => (
 const drugs = [
     { name: 'Capecitabine' },
     { name: 'FU' },
-    { name: 'Gemcitabine' },
+    { name: 'Gemictabine' },
     { name: 'Irinotecan' },
     { name: 'Oxaliplatin' },
     { name: 'Riluzole' },
@@ -165,37 +165,53 @@ export default function Search() {
                         </Button>
                     </Stack>
                 </Stack>
-                {searchResults.length > 0 && (
-                    <Box
-                        sx={(theme) => ({
-                            mt: { xs: 8, sm: 10 },
-                            pt: { xs: 4, sm: 6 },
-                            alignSelf: 'center',
-                            height: '100%',
-                            width: '100%',
-                            backgroundSize: 'cover',
-                            borderRadius: '10px',
-                            outline: '1px solid',
-                            outlineColor:
-                                theme.palette.mode === 'light'
-                                    ? alpha('#BFCCD9', 0.5)
-                                    : alpha('#9CCCFC', 0.1),
-                            boxShadow:
-                                theme.palette.mode === 'light'
-                                    ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
-                                    : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
-                        })}
-                    >
-                        <Typography variant="h6" color="text.primary">
-                            Search Results:
-                        </Typography>
-                        {searchResults.map((result, index) => (
-                            <Typography key={index} variant="body2" color="text.secondary">
-                                {result.FullName} ({result.Drug}) - {result.Effect}
-                            </Typography>
-                        ))}
-                    </Box>
-                )}
+                <Box
+                    sx={(theme) => ({
+                        mt: { xs: 8, sm: 10 },
+                        pt: { xs: 4, sm: 6 },
+                        alignSelf: 'center',
+                        height: '100%',
+                        width: '100%',
+                        backgroundSize: 'cover',
+                        borderRadius: '10px',
+                        outline: '1px solid',
+                        outlineColor:
+                            theme.palette.mode === 'light'
+                                ? alpha('#BFCCD9', 0.5)
+                                : alpha('#9CCCFC', 0.1),
+                        boxShadow:
+                            theme.palette.mode === 'light'
+                                ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
+                                : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
+                    })}
+                >
+                    <Typography variant="h6" color="text.primary">
+                        Search Results:
+                    </Typography>
+                    {searchResults.length > 0 && (
+                        <Box
+                            sx={(theme) => ({
+                                pl: { xs: 2, sm: 4 },
+                                alignSelf: 'center',
+                                height: '100%',
+                                width: '100%',
+                                backgroundSize: 'cover',
+                                borderRadius: '10px',
+                                outline: '1px solid',
+                                outlineColor:
+                                    theme.palette.mode === 'light'
+                                        ? alpha('#BFCCD9', 0.5)
+                                        : alpha('#9CCCFC', 0.1),
+                            })}
+                        >
+                            {searchResults.map((result, index) => (
+                                <Typography key={index} variant="body2" color="text.secondary">
+                                    {result.FullName} ({result.Drug}) - {result.Effect}
+                                </Typography>
+                            ))}
+                        </Box>
+                    )}
+                </Box>
             </Container>
         </Box>
     );
