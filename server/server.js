@@ -31,7 +31,7 @@ app.get('/search', (req, res) => {
                 res.json(results);
             });
     } else {
-        fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
+        fs.createReadStream(path.join(__dirname, 'data', 'Database_Data - Copy.csv'))
             .pipe(csv())
             .on('data', (data) => {
                 results.push(data);
