@@ -136,9 +136,14 @@ export default function Search() {
 
     const handleSearch = () => {
         const query = selectedDrug !== 'Drug' ? selectedDrug : '';
-        axios.get(`http://localhost:5000/search?q=${query}`)
+        const page = 0; // Start at page 0
+        const limit = rowsPerPage; // Use the same limit as the rows per page
+
+        axios.get(`http://localhost:5000/search?q=${query}&page=${page}&limit=${limit}`)
             .then(response => {
-                setSearchResults(response.data);
+                setSearchResults(response.data.data);
+                setPage(response.data.page);
+                setRowsPerPage(response.data.limit);
             })
             .catch(error => {
                 console.error('There was an error searching the data!', error);
@@ -150,11 +155,32 @@ export default function Search() {
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
+        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const limit = rowsPerPage;
+
+        axios.get(`http://localhost:5000/search?q=${query}&page=${newPage}&limit=${limit}`)
+            .then(response => {
+                setSearchResults(response.data.data);
+            })
+            .catch(error => {
+                console.error('There was an error searching the data!', error);
+            });
     };
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
+        const newLimit = parseInt(event.target.value, 10);
+        setRowsPerPage(newLimit);
+        setPage(0); // Reset to the first page
+
+        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+
+        axios.get(`http://localhost:5000/search?q=${query}&page=0&limit=${newLimit}`)
+            .then(response => {
+                setSearchResults(response.data.data);
+            })
+            .catch(error => {
+                console.error('There was an error searching the data!', error);
+            });
     };
 
     return (
