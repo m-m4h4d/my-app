@@ -270,7 +270,6 @@ export default function Search() {
                 <Box
                     sx={(theme) => ({
                         mt: { xs: 8, sm: 10 },
-                        pt: { xs: 4, sm: 6 },
                         alignSelf: 'center',
                         height: '100%',
                         width: '100%',
@@ -287,65 +286,60 @@ export default function Search() {
                                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
                     })}
                 >
-                    <Typography variant="h6" color="text.primary">
-                        Search Results:
-                    </Typography>
                     {searchResults.length > 0 && (
-                        <Box>
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>AccessionNo</TableCell>
-                                            <TableCell>Type</TableCell>
-                                            <TableCell>Drug</TableCell>
-                                            <TableCell>Full Name</TableCell>
-                                            <TableCell>Original_Accession</TableCell>
-                                            <TableCell>Effect</TableCell>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align='center'>AccessionNo</TableCell>
+                                        <TableCell align='center'>Type</TableCell>
+                                        <TableCell align='center'>Drug</TableCell>
+                                        <TableCell align='center'>Full Name</TableCell>
+                                        <TableCell align='center'>Original_Accession</TableCell>
+                                        <TableCell align='center'>Effect</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((result, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell align='center'>{result.AccessionNo}</TableCell>
+                                            <TableCell align='center'>{result.Type}</TableCell>
+                                            <TableCell align='center'>{result.Drug}</TableCell>
+                                            <TableCell align='center'>{result.FullName}</TableCell>
+                                            <TableCell align='center'>{result.Original_Accession}</TableCell>
+                                            <TableCell align='center'>{result.Effect}</TableCell>
                                         </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((result, index) => (
-                                            <TableRow key={index}>
-                                                <TableCell>{result.AccessionNo}</TableCell>
-                                                <TableCell>{result.Type}</TableCell>
-                                                <TableCell>{result.Drug}</TableCell>
-                                                <TableCell>{result.FullName}</TableCell>
-                                                <TableCell>{result.Original_Accession}</TableCell>
-                                                <TableCell>{result.Effect}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                        {emptyRows > 0 && (
-                                            <TableRow style={{ height: 53 * emptyRows }}>
-                                                <TableCell colSpan={6} />
-                                            </TableRow>
-                                        )}
-                                    </TableBody>
-                                    <TableFooter>
-                                        <TableRow>
-                                            <TablePagination
-                                                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                                                colSpan={6}
-                                                count={searchResults.length}
-                                                rowsPerPage={rowsPerPage}
-                                                page={page}
-                                                slotProps={{
-                                                    select: {
-                                                        inputProps: {
-                                                            'aria-label': 'rows per page',
-                                                        },
-                                                        native: true,
+                                    ))}
+                                    {emptyRows > 0 && (
+                                        <TableRow style={{ height: 53 * emptyRows }}>
+                                            <TableCell colSpan={6} />
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                                <TableFooter>
+                                    <TableRow>
+                                        <TablePagination
+                                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                            colSpan={6}
+                                            count={searchResults.length}
+                                            rowsPerPage={rowsPerPage}
+                                            page={page}
+                                            slotProps={{
+                                                select: {
+                                                    inputProps: {
+                                                        'aria-label': 'rows per page',
                                                     },
-                                                }}
-                                                onPageChange={handleChangePage}
-                                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                                ActionsComponent={TablePaginationActions}
-                                            />
-                                        </TableRow>
-                                    </TableFooter>
-                                </Table>
-                            </TableContainer>
-                        </Box>
+                                                    native: true,
+                                                },
+                                            }}
+                                            onPageChange={handleChangePage}
+                                            onRowsPerPageChange={handleChangeRowsPerPage}
+                                            ActionsComponent={TablePaginationActions}
+                                        />
+                                    </TableRow>
+                                </TableFooter>
+                            </Table>
+                        </TableContainer>
                     )}
                 </Box>
             </Container>
