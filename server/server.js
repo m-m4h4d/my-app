@@ -16,8 +16,8 @@ app.use(express.json());
 app.get('/search', (req, res) => {
     const query = req.query.q ? req.query.q.toLowerCase() : '';
     const results = [];
-
-    fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
+    console.log(req.query);
+        fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
         .pipe(csv())
         .on('data', (data) => {
             if (data.Drug.toLowerCase().includes(query) || data.FullName.toLowerCase().includes(query)) {
@@ -25,6 +25,7 @@ app.get('/search', (req, res) => {
             }
         })
         .on('end', () => {
+            console.log(results);
             res.json(results);
         });
 });

@@ -72,7 +72,7 @@ export default function Search() {
 
     const handleSearch = () => {
         const query = selectedDrug !== 'Drug' ? selectedDrug : '';
-        axios.get(`/search?q=${query}`)
+        axios.get(`http://localhost:5000/search?q=${query}`)
             .then(response => {
                 setSearchResults(response.data);
             })
