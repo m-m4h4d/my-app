@@ -365,12 +365,12 @@ export default function Search() {
                                 </TableBody>
                                 <TableFooter>
                                     <TableRow style={{ height: '3rem' }}>
-                                        <TableCell colSpan={2} align='center' style={{ margin: 0, padding: 0 }}>
+                                        <TableCell align='right' style={{ margin: 0, padding: 0 }}>
                                             {smallLoading && <CircularProgress size='2rem' />}
                                         </TableCell>
                                         <TablePagination
                                             rowsPerPageOptions={[5, 10, 20, 50]}
-                                            colSpan={6}
+                                            colSpan={5}
                                             count={totalCount}
                                             rowsPerPage={rowsPerPage}
                                             page={page}
