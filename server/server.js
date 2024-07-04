@@ -23,7 +23,7 @@ app.get('/search', (req, res) => {
     let count = 0;
 
     // Read the CSV file and apply search and pagination
-    fs.createReadStream(path.join(__dirname, 'data', 'Database_Data - Copy.csv'))
+    fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
         .pipe(csv())
         .on('data', (data) => {
             if (((query === '' && keywords === '') || data.Drug.toLowerCase().includes(query)) &&
