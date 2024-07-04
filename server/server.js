@@ -31,7 +31,15 @@ app.get('/search', (req, res) => {
                 res.json(results);
             });
     } else {
-        res.json({ message: 'No search query provided' });
+        fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
+            .pipe(csv())
+            .on('data', (data) => {
+                results.push(data);
+            })
+            .on('end', () => {
+                console.log(results);
+                res.json(results);
+            });
     }
 });
 

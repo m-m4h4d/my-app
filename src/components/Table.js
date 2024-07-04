@@ -15,6 +15,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import { TableHead } from '@mui/material';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -95,9 +96,9 @@ const rows = [
   createData('Marshmallow', 318, 0),
   createData('Nougat', 360, 19.0),
   createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+];
 
-export default function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable(result) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -117,6 +118,13 @@ export default function CustomPaginationActionsTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+        <TableHead>
+            <TableRow>
+                <TableCell>Full Name</TableCell>
+                <TableCell align="right">Drug</TableCell>
+                <TableCell align="right">Effect</TableCell>
+            </TableRow>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

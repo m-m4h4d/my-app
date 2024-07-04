@@ -1,7 +1,69 @@
 import * as React from 'react';
-import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha } from '@mui/material';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import PropTypes from 'prop-types';
+import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha, TableContainer, Paper, Table, TableCell, TableHead, TableRow, TableFooter, TablePagination, useTheme, IconButton, TableBody } from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight, FirstPage, LastPage } from '@mui/icons-material';
 import axios from 'axios';
+
+function TablePaginationActions(props) {
+    const theme = useTheme();
+    const { count, page, rowsPerPage, onPageChange } = props;
+
+    const handleFirstPageButtonClick = (event) => {
+        onPageChange(event, 0);
+    };
+
+    const handleBackButtonClick = (event) => {
+        onPageChange(event, page - 1);
+    };
+
+    const handleNextButtonClick = (event) => {
+        onPageChange(event, page + 1);
+    };
+
+    const handleLastPageButtonClick = (event) => {
+        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    };
+
+    return (
+        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+            <IconButton
+                onClick={handleFirstPageButtonClick}
+                disabled={page === 0}
+                aria-label="first page"
+            >
+                {theme.direction === 'rtl' ? <LastPage /> : <FirstPage />}
+            </IconButton>
+            <IconButton
+                onClick={handleBackButtonClick}
+                disabled={page === 0}
+                aria-label="previous page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            </IconButton>
+            <IconButton
+                onClick={handleNextButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="next page"
+            >
+                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </IconButton>
+            <IconButton
+                onClick={handleLastPageButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                aria-label="last page"
+            >
+                {theme.direction === 'rtl' ? <FirstPage /> : <LastPage />}
+            </IconButton>
+        </Box>
+    );
+}
+
+TablePaginationActions.propTypes = {
+    count: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
+    rowsPerPage: PropTypes.number.isRequired,
+};
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -53,6 +115,8 @@ export default function Search() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [selectedDrug, setSelectedDrug] = React.useState('Drug');
     const [searchResults, setSearchResults] = React.useState([]);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -79,6 +143,18 @@ export default function Search() {
             .catch(error => {
                 console.error('There was an error searching the data!', error);
             });
+    };
+
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - searchResults.length) : 0;
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
     };
 
     return (
@@ -189,26 +265,74 @@ export default function Search() {
                         Search Results:
                     </Typography>
                     {searchResults.length > 0 && (
-                        <Box
-                            sx={(theme) => ({
-                                pl: { xs: 2, sm: 4 },
-                                alignSelf: 'center',
-                                height: '100%',
-                                width: '100%',
-                                backgroundSize: 'cover',
-                                borderRadius: '10px',
-                                outline: '1px solid',
-                                outlineColor:
-                                    theme.palette.mode === 'light'
-                                        ? alpha('#BFCCD9', 0.5)
-                                        : alpha('#9CCCFC', 0.1),
-                            })}
-                        >
-                            {searchResults.map((result, index) => (
-                                <Typography key={index} variant="body2" color="text.secondary">
-                                    {result.FullName} ({result.Drug}) - {result.Effect}
-                                </Typography>
-                            ))}
+                        <Box>
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>AccessionNo</TableCell>
+                                            <TableCell>Type</TableCell>
+                                            <TableCell>Drug</TableCell>
+                                            <TableCell>Full Name</TableCell>
+                                            <TableCell>Original_Accession</TableCell>
+                                            <TableCell>Effect</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {(searchResults > 0
+                                            ? searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                            : searchResults).map((result) => (
+                                                <TableRow>
+                                                    <TableCell>
+                                                        {result.AccessionNo}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {result.Type}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {result.Drug}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {result.FullName}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {result.Original_Accession}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {result.Effect}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        {emptyRows > 0 && (
+                                            <TableRow style={{ height: 53 * emptyRows }}>
+                                                <TableCell colSpan={6} />
+                                            </TableRow>
+                                        )}
+                                    </TableBody>
+                                    <TableFooter>
+                                        <TableRow>
+                                            <TablePagination
+                                                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                                colSpan={6}
+                                                count={searchResults.length}
+                                                rowsPerPage={rowsPerPage}
+                                                page={page}
+                                                slotProps={{
+                                                    select: {
+                                                        inputProps: {
+                                                            'aria-label': 'rows per page',
+                                                        },
+                                                        native: true,
+                                                    },
+                                                }}
+                                                onPageChange={handleChangePage}
+                                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                                ActionsComponent={TablePaginationActions}
+                                            />
+                                        </TableRow>
+                                    </TableFooter>
+                                </Table>
+                            </TableContainer>
                         </Box>
                     )}
                 </Box>
