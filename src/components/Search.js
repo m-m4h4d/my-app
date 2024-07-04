@@ -1,8 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, alpha, TableContainer, Paper, Table, TableCell, TableHead, TableRow, TableFooter, TablePagination, useTheme, IconButton, TableBody } from '@mui/material';
+import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, TableContainer, Paper, Table, TableCell, TableHead, TableRow, TableFooter, TablePagination, useTheme, IconButton, TableBody, alpha, CircularProgress } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight, FirstPage, LastPage } from '@mui/icons-material';
 import axios from 'axios';
+
+var fetched;
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -84,7 +86,7 @@ const StyledMenu = styled((props) => (
         marginTop: theme.spacing(1),
         minWidth: 180,
         color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
-        boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+        boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0px, rgb(0, 0, 0) 0px 0px 0px 1px, rgb(0, 0, 0) 0px 10px 15px -3px, rgb(0, 0, 0) 0px 4px 6px -2px',
         '& .MuiMenu-list': {
             padding: '4px 0',
         },
@@ -95,7 +97,7 @@ const StyledMenu = styled((props) => (
                 marginRight: theme.spacing(1.5),
             },
             '&:active': {
-                backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+                backgroundColor: theme.palette.primary.main,
             },
         },
     },
@@ -113,10 +115,12 @@ const drugs = [
 
 export default function Search() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [args, setArgs] = React.useState([]);
     const [selectedDrug, setSelectedDrug] = React.useState('Drug');
     const [searchResults, setSearchResults] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [totalCount, setTotalCount] = React.useState(0);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -134,32 +138,51 @@ export default function Search() {
         setAnchorEl(null);
     };
 
-    const handleSearch = () => {
-        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+    const handleSearch = async () => {
+        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const keywords = args ? args : '';
         const page = 0; // Start at page 0
         const limit = rowsPerPage; // Use the same limit as the rows per page
 
-        axios.get(`http://localhost:5000/search?q=${query}&page=${page}&limit=${limit}`)
+        fetched = await axios.get('http://localhost:5000/search', {
+            params: {
+                q: drugQuery,
+                keywords: keywords,
+                page: page,
+                limit: limit
+            }
+        })
             .then(response => {
+                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
                 setPage(response.data.page);
                 setRowsPerPage(response.data.limit);
+                setTotalCount(response.data.totalCount);
             })
             .catch(error => {
                 console.error('There was an error searching the data!', error);
             });
     };
 
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - searchResults.length) : 0;
+    // const emptyRows =
+    //     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - searchResults.length) : 0;
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = async (event, newPage) => {
         setPage(newPage);
-        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const keywords = args ? args : '';
         const limit = rowsPerPage;
 
-        axios.get(`http://localhost:5000/search?q=${query}&page=${newPage}&limit=${limit}`)
+        fetched = await axios.get('http://localhost:5000/search', {
+            params: {
+                q: drugQuery,
+                keywords: keywords,
+                page: newPage,
+                limit: limit
+            }
+        })
             .then(response => {
+                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
             })
             .catch(error => {
@@ -167,15 +190,24 @@ export default function Search() {
             });
     };
 
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = async (event) => {
         const newLimit = parseInt(event.target.value, 10);
         setRowsPerPage(newLimit);
         setPage(0); // Reset to the first page
 
-        const query = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const keywords = args ? args : '';
 
-        axios.get(`http://localhost:5000/search?q=${query}&page=0&limit=${newLimit}`)
+        fetched = await axios.get('http://localhost:5000/search', {
+            params: {
+                q: drugQuery,
+                keywords: keywords,
+                page: 0,
+                limit: newLimit
+            }
+        })
             .then(response => {
+                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
             })
             .catch(error => {
@@ -220,7 +252,6 @@ export default function Search() {
                     >
                         <div>
                             <Button
-                                id="demo-customized-button"
                                 aria-controls={open ? 'demo-customized-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
@@ -232,9 +263,6 @@ export default function Search() {
                                 {selectedDrug}
                             </Button>
                             <StyledMenu
-                                MenuListProps={{
-                                    'aria-labelledby': 'demo-customized-button',
-                                }}
                                 anchorEl={anchorEl}
                                 open={open}
                                 onClose={() => handleClose(null)}
@@ -257,6 +285,8 @@ export default function Search() {
                             variant="outlined"
                             aria-label="Type Keywords..."
                             placeholder="Type Keywords..."
+                            value={args}
+                            onChange={(event) => setArgs(event.target.value)}
                             inputProps={{
                                 autoComplete: 'on',
                                 'aria-label': 'Type Keywords...',
@@ -268,8 +298,11 @@ export default function Search() {
                     </Stack>
                 </Stack>
                 <Box
+                    align='center'
                     sx={(theme) => ({
                         mt: { xs: 8, sm: 10 },
+                        pt: { xs: 2, sm: 3 },
+                        justifyContent: 'space-between',
                         alignSelf: 'center',
                         height: '100%',
                         width: '100%',
@@ -286,6 +319,7 @@ export default function Search() {
                                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
                     })}
                 >
+                    <CircularProgress style={{ marginBottom: '1rem' }} />
                     {searchResults.length > 0 && (
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -310,18 +344,18 @@ export default function Search() {
                                             <TableCell align='center'>{result.Effect}</TableCell>
                                         </TableRow>
                                     ))}
-                                    {emptyRows > 0 && (
+                                    {/* {emptyRows > 0 && (
                                         <TableRow style={{ height: 53 * emptyRows }}>
                                             <TableCell colSpan={6} />
                                         </TableRow>
-                                    )}
+                                    )} */}
                                 </TableBody>
                                 <TableFooter>
                                     <TableRow>
                                         <TablePagination
-                                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                                            rowsPerPageOptions={[5, 10, 20, 50]}
                                             colSpan={6}
-                                            count={searchResults.length}
+                                            count={totalCount}
                                             rowsPerPage={rowsPerPage}
                                             page={page}
                                             slotProps={{

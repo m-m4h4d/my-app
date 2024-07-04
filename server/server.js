@@ -16,6 +16,7 @@ app.use(cors());
 // Search route with pagination
 app.get('/search', (req, res) => {
     const query = req.query.q ? req.query.q.toLowerCase() : '';
+    const keywords = req.query.keywords ? req.query.keywords.toLowerCase() : '';
     const page = parseInt(req.query.page, 10) || 0; // Default to page 0
     const limit = parseInt(req.query.limit, 10) || 100; // Default to 100 entries per page
     const results = [];
@@ -25,7 +26,11 @@ app.get('/search', (req, res) => {
     fs.createReadStream(path.join(__dirname, 'data', 'Database_Data - Copy.csv'))
         .pipe(csv())
         .on('data', (data) => {
-            if (query === '' || data.Drug.toLowerCase().includes(query)) {
+            if (((query === '' && keywords === '') || data.Drug.toLowerCase().includes(query)) &&
+                (keywords === '' || data.AccessionNo.toLowerCase().includes(keywords) ||
+                    data.Type.toLowerCase().includes(keywords) ||
+                    data.FullName.toLowerCase().includes(keywords) ||
+                    data.Effect.toLowerCase().includes(keywords))) {
                 if (count >= page * limit && count < (page + 2) * (limit * 2)) {
                     results.push(data);
                 }
@@ -33,7 +38,6 @@ app.get('/search', (req, res) => {
             }
         })
         .on('end', () => {
-            console.log(results);
             res.json({
                 page,
                 limit,
