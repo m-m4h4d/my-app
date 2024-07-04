@@ -121,6 +121,7 @@ export default function Search() {
     const [totalCount, setTotalCount] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
     const [smallLoading, setSmallLoading] = React.useState(false);
+    
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
