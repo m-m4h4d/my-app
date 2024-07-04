@@ -4,8 +4,6 @@ import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, s
 import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight, FirstPage, LastPage } from '@mui/icons-material';
 import axios from 'axios';
 
-var fetched;
-
 function TablePaginationActions(props) {
     const theme = useTheme();
     const { count, page, rowsPerPage, onPageChange } = props;
@@ -121,6 +119,8 @@ export default function Search() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [totalCount, setTotalCount] = React.useState(0);
+    const [loading, setLoading] = React.useState(false);
+    const [smallLoading, setSmallLoading] = React.useState(false);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -141,10 +141,12 @@ export default function Search() {
     const handleSearch = async () => {
         const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
         const keywords = args ? args : '';
-        const page = 0; // Start at page 0
-        const limit = rowsPerPage; // Use the same limit as the rows per page
+        const page = 0;
+        const limit = rowsPerPage;
 
-        fetched = await axios.get('http://localhost:5000/search', {
+        setLoading(true);
+
+        await axios.get('http://localhost:5000/search', {
             params: {
                 q: drugQuery,
                 keywords: keywords,
@@ -161,6 +163,9 @@ export default function Search() {
             })
             .catch(error => {
                 console.error('There was an error searching the data!', error);
+            })
+            .finally(() => {
+                setLoading(false)
             });
     };
 
@@ -173,7 +178,9 @@ export default function Search() {
         const keywords = args ? args : '';
         const limit = rowsPerPage;
 
-        fetched = await axios.get('http://localhost:5000/search', {
+        setSmallLoading(true);
+
+        await axios.get('http://localhost:5000/search', {
             params: {
                 q: drugQuery,
                 keywords: keywords,
@@ -187,18 +194,22 @@ export default function Search() {
             })
             .catch(error => {
                 console.error('There was an error searching the data!', error);
+            })
+            .finally(() => {
+                setSmallLoading(false)
             });
     };
 
     const handleChangeRowsPerPage = async (event) => {
         const newLimit = parseInt(event.target.value, 10);
-        setRowsPerPage(newLimit);
-        setPage(0); // Reset to the first page
-
         const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
         const keywords = args ? args : '';
 
-        fetched = await axios.get('http://localhost:5000/search', {
+        setLoading(true);
+        setRowsPerPage(newLimit);
+        setPage(0);
+
+        await axios.get('http://localhost:5000/search', {
             params: {
                 q: drugQuery,
                 keywords: keywords,
@@ -212,6 +223,9 @@ export default function Search() {
             })
             .catch(error => {
                 console.error('There was an error searching the data!', error);
+            })
+            .finally(() => {
+                setLoading(false)
             });
     };
 
@@ -301,7 +315,6 @@ export default function Search() {
                     align='center'
                     sx={(theme) => ({
                         mt: { xs: 8, sm: 10 },
-                        pt: { xs: 2, sm: 3 },
                         justifyContent: 'space-between',
                         alignSelf: 'center',
                         height: '100%',
@@ -319,8 +332,8 @@ export default function Search() {
                                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
                     })}
                 >
-                    <CircularProgress style={{ marginBottom: '1rem' }} />
-                    {searchResults.length > 0 && (
+                    {loading && <CircularProgress style={{ marginBottom: '1rem', marginTop: '1rem' }} />}
+                    {!loading && searchResults.length > 0 && (
                         <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                                 <TableHead>
@@ -351,7 +364,10 @@ export default function Search() {
                                     )} */}
                                 </TableBody>
                                 <TableFooter>
-                                    <TableRow>
+                                    <TableRow style={{ height: '3rem' }}>
+                                        <TableCell colSpan={2} align='center' style={{ margin: 0, padding: 0 }}>
+                                            {smallLoading && <CircularProgress size='2rem' />}
+                                        </TableCell>
                                         <TablePagination
                                             rowsPerPageOptions={[5, 10, 20, 50]}
                                             colSpan={6}
