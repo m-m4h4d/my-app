@@ -279,30 +279,16 @@ export default function Search() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {(searchResults > 0
-                                            ? searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                            : searchResults).map((result) => (
-                                                <TableRow>
-                                                    <TableCell>
-                                                        {result.AccessionNo}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {result.Type}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {result.Drug}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {result.FullName}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {result.Original_Accession}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {result.Effect}
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))}
+                                        {searchResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((result, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{result.AccessionNo}</TableCell>
+                                                <TableCell>{result.Type}</TableCell>
+                                                <TableCell>{result.Drug}</TableCell>
+                                                <TableCell>{result.FullName}</TableCell>
+                                                <TableCell>{result.Original_Accession}</TableCell>
+                                                <TableCell>{result.Effect}</TableCell>
+                                            </TableRow>
+                                        ))}
                                         {emptyRows > 0 && (
                                             <TableRow style={{ height: 53 * emptyRows }}>
                                                 <TableCell colSpan={6} />
