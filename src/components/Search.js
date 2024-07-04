@@ -121,7 +121,7 @@ export default function Search() {
     const [totalCount, setTotalCount] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
     const [smallLoading, setSmallLoading] = React.useState(false);
-    
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -170,8 +170,8 @@ export default function Search() {
             });
     };
 
-    // const emptyRows =
-    //     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - searchResults.length) : 0;
+    const emptyRows =
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - searchResults.length) : 0;
 
     const handleChangePage = async (event, newPage) => {
         setPage(newPage);
@@ -358,11 +358,11 @@ export default function Search() {
                                             <TableCell align='center'>{result.Effect}</TableCell>
                                         </TableRow>
                                     ))}
-                                    {/* {emptyRows > 0 && (
+                                    {emptyRows > 0 && (
                                         <TableRow style={{ height: 53 * emptyRows }}>
                                             <TableCell colSpan={6} />
                                         </TableRow>
-                                    )} */}
+                                    )}
                                 </TableBody>
                                 <TableFooter>
                                     <TableRow style={{ height: '3rem' }}>
