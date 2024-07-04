@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, Typography, Box, Container, Grid, Link } from '@mui/material';
-import { PS, AS } from '../assets/images';
+import { Principal, Author } from '../assets/images';
 
 const members = [
     {
-        avatar: AS,
+        avatar: Author,
         name: 'Muhammad Shahzaib',
         occupation: 'Author',
         email: "kshahzaib9937@gmail.com"
     },
     {
-        avatar: PS,
+        avatar: Principal,
         name: 'Dr. Masood Ur Rehman Kayani',
         occupation: 'Principal Investigator',
         email: "m.kayani@sines.nust.edu.pk"

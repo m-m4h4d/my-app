@@ -1,8 +1,6 @@
 # Microbial Chemoresistance Knowledgebase (MiCK)
 
-## Landing page template
-
-## Usage
+## **Landing page template** Usage
 
 <!-- #default-branch-switch -->
 
