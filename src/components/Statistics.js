@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { alpha, Box, Container, Typography, useTheme } from '@mui/material';
-import { Pd0, Pd1, Pl0, Pl1 } from '../assets/images';
+import { Pd2, Pd3, Pl2, Pl3 } from '../assets/images';
 
 export default function Statistics() {
     const theme = useTheme();
@@ -57,13 +57,13 @@ export default function Statistics() {
                 >
                     {theme.palette.mode === 'light' ? (
                         <>
-                            <img src={Pl0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
-                            <img src={Pl1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                            <img src={Pl2} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                            <img src={Pl3} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
                         </>
                     ) : (
                         <>
-                            <img src={Pd0} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
-                            <img src={Pd1} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                            <img src={Pd2} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
+                            <img src={Pd3} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
                         </>
                     )}
                 </Box>

@@ -32,7 +32,7 @@ export default function Hero() {
                             flexDirection: { xs: 'column', md: 'row' },
                             alignSelf: 'center',
                             textAlign: 'center',
-                            fontSize: 'clamp(3.5rem, 10vw, 4rem)',
+                            fontSize: 'clamp(3rem, 10vw, 4rem)',
                         }}
                     >
                         Welcome to the&nbsp;
@@ -43,6 +43,10 @@ export default function Hero() {
                         textAlign="center"
                         sx={{
                             fontSize: 'clamp(3rem, 10vw, 4rem)',
+                            textAlign: 'center',
+                            alignSelf: 'center',
+                            display: 'flex',
+                            flexDirection: { xs: 'column', md: 'row' },
                             color: (theme) =>
                                 theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
                         }}

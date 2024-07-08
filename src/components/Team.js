@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Card, CardContent, CardHeader, Typography, Box, Container, Grid, Link } from '@mui/material';
-import { Principal, Author } from '../assets/images';
+import { Card, CardContent, CardHeader, Typography, Box, Container, Grid } from '@mui/material';
+import { Download, Principal, Author, Husnain } from '../assets/images';
 
 const members = [
     {
@@ -14,7 +14,17 @@ const members = [
         name: 'Dr. Masood Ur Rehman Kayani',
         occupation: 'Principal Investigator',
         email: "m.kayani@sines.nust.edu.pk"
-    }
+    },
+    {
+        avatar: Husnain,
+        name: 'Husnain',
+        occupation: 'Database Developer'
+    },
+    {
+        avatar: Download,
+        name: 'Dr. Farzana Jabeen',
+        occupation: 'Lead Web Developer'
+    },
 ];
 
 export default function Team() {
@@ -51,29 +61,28 @@ export default function Team() {
                                 justifyContent: 'space-between',
                                 flexGrow: 1,
                                 p: 1,
+                                boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
                             }}
                         >
                             <Box
                                 sx={{
                                     display: 'flex',
                                     flexDirection: 'row',
-                                    justifyContent: 'space-around',
-                                    pt: 1,
-                                    pb: 1
+                                    justifyContent: 'flex-start',
+                                    p: 1,
+                                    alignItems: 'center',
+                                    textAlign: 'left'
                                 }}
                             >
                                 <img src={member.avatar} alt={member.name} style={{ borderRadius: '10%', maxWidth: '30%', objectFit: 'cover' }} />
-                                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'left' }}>
                                     <CardHeader
                                         title={member.name}
                                         subheader={member.occupation}
                                     />
-                                    <Typography variant='h6' sx={{ ml: 2 }} color="text.secondary">
-                                        Contact:
-                                    </Typography>
                                     <CardContent>
                                         <Typography variant="body1" color="text.secondary">
-                                            <Link href={member.email}>{member.email}</Link>
+                                            {member.email}
                                         </Typography>
                                     </CardContent>
                                 </Box>
