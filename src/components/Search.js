@@ -156,7 +156,6 @@ export default function Search() {
             }
         })
             .then(response => {
-                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
                 setPage(response.data.page);
                 setRowsPerPage(response.data.limit);
@@ -190,7 +189,6 @@ export default function Search() {
             }
         })
             .then(response => {
-                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
             })
             .catch(error => {
@@ -219,7 +217,6 @@ export default function Search() {
             }
         })
             .then(response => {
-                console.log('Search results:', response.data.page, response.data.limit, response.data.totalCount);
                 setSearchResults(response.data.data);
             })
             .catch(error => {
