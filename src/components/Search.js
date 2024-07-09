@@ -114,7 +114,7 @@ const drugs = [
 export default function Search() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [args, setArgs] = React.useState([]);
-    const [selectedDrug, setSelectedDrug] = React.useState('Drug');
+    const [selectedDrug, setSelectedDrug] = React.useState('Any');
     const [searchResults, setSearchResults] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -135,12 +135,12 @@ export default function Search() {
     };
 
     const handleDeselect = () => {
-        setSelectedDrug('Drug');
+        setSelectedDrug('Any');
         setAnchorEl(null);
     };
 
     const handleSearch = async () => {
-        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const drugQuery = selectedDrug !== 'Any' ? selectedDrug : '';
         const keywords = args ? args : '';
         const page = 0;
         const limit = rowsPerPage;
@@ -174,7 +174,7 @@ export default function Search() {
 
     const handleChangePage = async (event, newPage) => {
         setPage(newPage);
-        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const drugQuery = selectedDrug !== 'Any' ? selectedDrug : '';
         const keywords = args ? args : '';
         const limit = rowsPerPage;
 
@@ -201,7 +201,7 @@ export default function Search() {
 
     const handleChangeRowsPerPage = async (event) => {
         const newLimit = parseInt(event.target.value, 10);
-        const drugQuery = selectedDrug !== 'Drug' ? selectedDrug : '';
+        const drugQuery = selectedDrug !== 'Any' ? selectedDrug : '';
         const keywords = args ? args : '';
 
         setLoading(true);
@@ -252,7 +252,7 @@ export default function Search() {
                     Search page allows a keyword search against the sequences of MiCK database.
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                    Type keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin.
+                    Select a drug in the drop-down menu or type keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin.
                 </Typography>
                 <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
                     <Stack
@@ -280,7 +280,7 @@ export default function Search() {
                                 onClose={() => handleClose(null)}
                             >
                                 <MenuItem onClick={handleDeselect}>
-                                    None
+                                    Any
                                 </MenuItem>
                                 {drugs.map((drug, index) => (
                                     <MenuItem key={index} onClick={() => handleClose(drug)}>
