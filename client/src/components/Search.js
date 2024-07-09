@@ -83,7 +83,7 @@ const StyledMenu = styled((props) => (
         borderRadius: 6,
         marginTop: theme.spacing(1),
         minWidth: 180,
-        color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+        color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : '#090E10',
         boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0px, rgb(0, 0, 0) 0px 0px 0px 1px, rgb(0, 0, 0) 0px 10px 15px -3px, rgb(0, 0, 0) 0px 4px 6px -2px',
         '& .MuiMenu-list': {
             padding: '4px 0',
@@ -254,11 +254,11 @@ export default function Search() {
                 <Typography variant="body1" color="text.secondary">
                     Select a drug in the drop-down menu or type keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin.
                 </Typography>
-                <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
+                <Stack useFlexGap spacing={2} sx={{ width: { xs: '100%', sm: '90%' } }}>
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         alignSelf="center"
-                        spacing={1}
+                        spacing={2}
                         useFlexGap
                         sx={{ pt: 2, width: '100%' }}
                     >
