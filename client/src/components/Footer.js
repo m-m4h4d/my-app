@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Container, Link, useTheme } from '@mui/material';
-import { ll, dl } from '../assets/images';
+import { ll, dl } from '../images';
 
 const logoStyle = {
     width: '100%',

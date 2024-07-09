@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, Typography, Box, Container, Grid } from '@mui/material';
-import { Download, Principal, Author, Husnain } from '../assets/images';
+import { Download, Principal, Author, Husnain } from '../images';
 
 const members = [
     {

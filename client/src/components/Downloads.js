@@ -129,7 +129,7 @@ export default function Downloads() {
                                     fullWidth
                                     variant={hoveredCard === index ? "contained" : "outlined"}
                                     component="a"
-                                    href={`../static/data/${tier.file}`}
+                                    href={`../static/assets/${tier.file}`}
                                     download
                                 >
                                     Download
