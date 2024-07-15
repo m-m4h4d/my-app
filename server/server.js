@@ -29,7 +29,7 @@ app.get('/search', (req, res) => {
             if ((query === 'Drug' && data.Drug.toLowerCase().includes(keywords)) &&
                 (query === 'Effect' && data.Effect.toLowerCase().includes(keywords)) &&
                 (query === 'Gene Type' && data.Type.toLowerCase().includes(keywords)) &&
-                (query === '' && keywords === '')) {
+                (query === '' && keywords === '') || data.Drug.toLowerCase().includes(keywords)) {
                 if (count >= page * limit && count < (page + 2) * (limit * 2)) {
                     results.push(data);
                 }
