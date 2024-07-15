@@ -21,10 +21,10 @@ export default function Hero() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     pt: { xs: 14, sm: 20 },
-                    pb: { xs: 8, sm: 12 },
+                    pb: { xs: 8, sm: 10 },
                 }}
             >
-                <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
+                <Stack spacing={2} useFlexGap sx={{ width: '100%' }}>
                     <Typography
                         variant="h1"
                         sx={{
@@ -54,6 +54,7 @@ export default function Hero() {
                         Microbial Chemoresistance Knowledgebase (MiCK)
                     </Typography>
                     <Typography
+                        variant='h6'
                         textAlign="center"
                         color="text.secondary"
                         sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}

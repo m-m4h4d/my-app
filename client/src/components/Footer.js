@@ -1,30 +1,17 @@
 import * as React from 'react';
-import { Box, Container, Link, useTheme } from '@mui/material';
+import { Box, Container, useTheme, Link as MuiLink } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { ll, dl } from '../images';
 
 const logoStyle = {
-    width: '100%',
+    width: '52%',
     height: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '999px 0 0 999px',
 };
 
 export default function Footer() {
     const theme = useTheme();
-
-    const scrollToSection = (sectionId) => {
-        const sectionElement = document.getElementById(sectionId);
-        const offset = 128;
-        if (sectionElement) {
-            const targetScroll = sectionElement.offsetTop - offset;
-            sectionElement.scrollIntoView({ behavior: 'smooth' });
-            window.scrollTo({
-                top: targetScroll,
-                behavior: 'smooth',
-            });
-        }
-    };
 
     return (
         <Container
@@ -32,8 +19,8 @@ export default function Footer() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                py: 1,
                 gap: { xs: 4, sm: 8 },
-                py: { xs: 8, sm: 10 },
                 textAlign: { sm: 'center', md: 'left' },
             }}
         >
@@ -42,26 +29,25 @@ export default function Footer() {
                     display: 'flex',
                     flexDirection: { xs: 'column', sm: 'row' },
                     width: '100%',
-                    justifyContent: 'space-between',
+                    justifyContent: 'space-around',
                 }}
             >
                 <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: 4,
                         minWidth: { xs: '100%', sm: '60%' },
                     }}
                 >
                     <Box sx={{ width: { xs: '100%', sm: '60%' }, justifyContent: 'center', alignItems: 'center' }}>
-                        <Box sx={{ ml: '-15px', justifyContent: 'center', alignItems: 'center' }}>
+                        <Box sx={{ justifyContent: 'center', alignItems: 'center' }}>
                             {theme.palette.mode === 'light' ? (
                                 <>
-                                    <img src={dl} alt="Hero" style={logoStyle} />
+                                    <img src={ll} alt="Hero" style={logoStyle} />
                                 </>
                             ) : (
                                 <>
-                                    <img src={ll} alt="Hero" style={logoStyle} />
+                                    <img src={dl} alt="Hero" style={logoStyle} />
                                 </>
                             )}
                         </Box>
@@ -72,40 +58,42 @@ export default function Footer() {
                         display: { xs: 'none', sm: 'flex' },
                         flexDirection: 'column',
                         gap: 1,
+                        mt: 2
                     }}
                 >
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('hero')}>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/'>
                         Home
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('highlights')}>
-                        Highlights
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('search')}>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/search'>
                         Search
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('downloads')}>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/downloads'>
                         Downloads
-                    </Link>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/about'>
+                        About Us
+                    </MuiLink>
                 </Box>
                 <Box
                     sx={{
                         display: { xs: 'none', sm: 'flex' },
                         flexDirection: 'column',
                         gap: 1,
+                        mt: 2
                     }}
                 >
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('about')}>
-                        About us
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('faq')}>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/faq'>
                         FAQs
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('team')}>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/team'>
                         Team
-                    </Link>
-                    <Link color="text.secondary" sx={{ cursor: 'pointer' }} onClick={() => scrollToSection('statistics')}>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/stats'>
                         Statistics
-                    </Link>
+                    </MuiLink>
+                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/highlights'>
+                        Highlights
+                    </MuiLink>
                 </Box>
             </Box>
         </Container>

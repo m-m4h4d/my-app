@@ -4,14 +4,14 @@ import { Box, AppBar, Toolbar, Button, Container, Divider, Typography, MenuItem,
 import { Menu } from '@mui/icons-material';
 import { ToggleColorMode } from './';
 import { ll, dl } from '../images';
+import { Link } from 'react-router-dom';
 
 const logoStyle = {
-    width: '140px',
+    width: '50px',
     height: 'auto',
     cursor: 'pointer',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '999px 0 0 999px',
 };
 
 function Navbar({ mode, toggleColorMode }) {
@@ -20,20 +20,6 @@ function Navbar({ mode, toggleColorMode }) {
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
-    };
-
-    const scrollToSection = (sectionId) => {
-        const sectionElement = document.getElementById(sectionId);
-        const offset = 128;
-        if (sectionElement) {
-            const targetScroll = sectionElement.offsetTop - offset;
-            sectionElement.scrollIntoView({ behavior: 'smooth' });
-            window.scrollTo({
-                top: targetScroll,
-                behavior: 'smooth',
-            });
-            setOpen(false);
-        }
     };
 
     return (
@@ -75,23 +61,24 @@ function Navbar({ mode, toggleColorMode }) {
                                 flexGrow: 1,
                                 display: 'flex',
                                 alignItems: 'center',
-                                ml: '-18px',
-                                px: 0,
+                                justifyContent: 'flex-start',
+                                ml: 0,
+                                pl: 0
                             }}
                         >
                             {theme.palette.mode === 'light' ? (
                                 <>
-                                    <img src={dl} alt="Hero" style={logoStyle} />
+                                    <img src={ll} alt="Hero" style={logoStyle} />
                                 </>
                             ) : (
                                 <>
-                                    <img src={ll} alt="Hero" style={logoStyle} />
+                                    <img src={dl} alt="Hero" style={logoStyle} />
                                 </>
                             )}
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                <Divider orientation="vertical" flexItem />
+                                <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
                                 <MenuItem
-                                    onClick={() => scrollToSection('hero')}
+                                    component={Link} to="/" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -99,7 +86,7 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('statistics')}
+                                    component={Link} to="/stats" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -107,7 +94,7 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('highlights')}
+                                    component={Link} to="/highlights" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -115,7 +102,7 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('search')}
+                                    component={Link} to="/search" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -123,7 +110,7 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('downloads')}
+                                    component={Link} to="/downloads" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -131,7 +118,15 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('about')}
+                                    component={Link} to="/faq" underline="none"
+                                    sx={{ py: '6px', px: '12px' }}
+                                >
+                                    <Typography variant="body2" color="text.primary">
+                                        FAQs
+                                    </Typography>
+                                </MenuItem>
+                                <MenuItem
+                                    component={Link} to="/about" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -139,15 +134,7 @@ function Navbar({ mode, toggleColorMode }) {
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem
-                                    onClick={() => scrollToSection('faq')}
-                                    sx={{ py: '6px', px: '12px' }}
-                                >
-                                    <Typography variant="body2" color="text.primary">
-                                        FAQ
-                                    </Typography>
-                                </MenuItem>
-                                <MenuItem
-                                    onClick={() => scrollToSection('team')}
+                                    component={Link} to="/team" underline="none"
                                     sx={{ py: '6px', px: '12px' }}
                                 >
                                     <Typography variant="body2" color="text.primary">
@@ -197,28 +184,28 @@ function Navbar({ mode, toggleColorMode }) {
                                     <br />
                                     <Divider />
                                     <br />
-                                    <MenuItem onClick={() => scrollToSection('hero')}>
+                                    <MenuItem component={Link} to="/" underline="none">
                                         Home
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('statistics')}>
+                                    <MenuItem component={Link} to="/stats" underline="none">
                                         Statistics
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('highlights')}>
+                                    <MenuItem component={Link} to="/highlights" underline="none">
                                         Highlights
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('search')}>
+                                    <MenuItem component={Link} to="/search" underline="none">
                                         Search
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('downloads')}>
+                                    <MenuItem component={Link} to="/downloads" underline="none">
                                         Downloads
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('about')}>
+                                    <MenuItem component={Link} to="/faq" underline="none">
+                                        FAQs
+                                    </MenuItem>
+                                    <MenuItem component={Link} to="/about" underline="none">
                                         About Us
                                     </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('faq')}>
-                                        FAQ
-                                    </MenuItem>
-                                    <MenuItem onClick={() => scrollToSection('team')}>
+                                    <MenuItem component={Link} to="/team" underline="none">
                                         Team
                                     </MenuItem>
                                 </Box>

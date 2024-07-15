@@ -31,7 +31,7 @@ export default function FAQ() {
                     textAlign: { sm: 'left', md: 'center' },
                 }}
             >
-                Frequently asked questions
+                Frequently Asked Questions
             </Typography>
             <Box sx={{ width: '100%' }}>
                 <Accordion
@@ -49,7 +49,7 @@ export default function FAQ() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography
-                            variant="body2"
+                            variant="body1"
                             gutterBottom
                             sx={{ maxWidth: { sm: '100%', md: '70%' } }}
                         >
@@ -72,7 +72,7 @@ export default function FAQ() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography
-                            variant="body2"
+                            variant="body1"
                             gutterBottom
                             sx={{ maxWidth: { sm: '100%', md: '70%' } }}
                         >
@@ -95,7 +95,7 @@ export default function FAQ() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography
-                            variant="body2"
+                            variant="body1"
                             gutterBottom
                             sx={{ maxWidth: { sm: '100%', md: '70%' } }}
                         >

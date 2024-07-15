@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, Divider, Box, CssBaseline } from '@mui/material';
-import { Navbar, Statistics, Hero, Highlights, Downloads, Search, Team, About, FAQ, Footer } from './components';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme, CssBaseline, Divider } from '@mui/material';
+import { Navbar, Hero, Statistics, Downloads, Search, Team, FAQ, Footer, About, Highlights } from './components';
 import getLPTheme from './getLPTheme';
 
 export default function LandingPage() {
@@ -12,28 +13,23 @@ export default function LandingPage() {
     };
 
     return (
-        <ThemeProvider theme={LPtheme}>
-            <CssBaseline />
-            <Navbar mode={mode} toggleColorMode={toggleColorMode} />
-            <Hero />
-            <Box sx={{ bgcolor: 'background.default' }}>
-                <Divider />
-                <Statistics />
-                <Divider />
-                <Highlights />
-                <Divider />
-                <Search />
-                <Divider />
-                <Downloads />
-                <Divider />
-                <About />
-                <Divider />
-                <FAQ />
-                <Divider />
-                <Team />
+        <Router>
+            <ThemeProvider theme={LPtheme}>
+                <CssBaseline />
+                <Navbar mode={mode} toggleColorMode={toggleColorMode} />
+                <Routes>
+                    <Route path="/" element={<Hero />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/downloads" element={<Downloads />} />
+                    <Route path="/stats" element={<Statistics />} />
+                    <Route path="/highlights" element={<Highlights />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/team" element={<Team />} />
+                </Routes>
                 <Divider />
                 <Footer />
-            </Box>
-        </ThemeProvider>
+            </ThemeProvider>
+        </Router>
     );
 }

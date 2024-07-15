@@ -7,17 +7,17 @@ const members = [
         avatar: Author,
         name: 'Muhammad Shahzaib',
         occupation: 'Author',
-        email: "kshahzaib9937@gmail.com"
+        email: "kshahzaib9937 (at) gmail.com"
     },
     {
         avatar: Principal,
         name: 'Dr. Masood Ur Rehman Kayani',
         occupation: 'Principal Investigator',
-        email: "m.kayani@sines.nust.edu.pk"
+        email: "m.kayani (at) sines.nust.edu.pk"
     },
     {
         avatar: Husnain,
-        name: 'Husnain',
+        name: 'Muhammad Hasnain Zubair',
         occupation: 'Database Developer'
     },
     {
@@ -32,8 +32,8 @@ export default function Team() {
         <Container
             id="team"
             sx={{
-                pt: { xs: 4, sm: 12 },
-                pb: { xs: 8, sm: 16 },
+                pt: { xs: 4, sm: 10 },
+                pb: { xs: 8, sm: 9 },
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
