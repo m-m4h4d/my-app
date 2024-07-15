@@ -26,11 +26,12 @@ app.get('/search', (req, res) => {
     fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
         .pipe(csv())
         .on('data', (data) => {
-            if (((query === '' && keywords === '') || data.Drug.toLowerCase().includes(query)) &&
-                (keywords === '' || data.AccessionNo.toLowerCase().includes(keywords) ||
-                    data.Type.toLowerCase().includes(keywords) ||
-                    data.FullName.toLowerCase().includes(keywords) ||
-                    data.Effect.toLowerCase().includes(keywords))) {
+            if ((query === 'Drug' && data.Drug.toLowerCase().includes(keywords)) &&
+                (query === 'Effect' && data.Effect.toLowerCase().includes(keywords)) &&
+                (query === 'Gene Type' && data.Type.toLowerCase().includes(keywords)) &&
+                (query === '' && keywords === '') && data.Drug.toLowerCase().includes(keywords) &&
+                data.Effect.toLowerCase().includes(keywords) && data.Type.toLowerCase().includes(keywords) &&
+                data.FullName.toLowerCase().includes(keywords) && data.AccessionNo.toLowerCase().includes(keywords)) {
                 if (count >= page * limit && count < (page + 2) * (limit * 2)) {
                     results.push(data);
                 }

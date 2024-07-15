@@ -58,7 +58,7 @@ export default function Footer() {
                         display: { xs: 'none', sm: 'flex' },
                         flexDirection: 'column',
                         gap: 1,
-                        mt: 2
+                        mt: 8
                     }}
                 >
                     <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/'>
@@ -79,7 +79,7 @@ export default function Footer() {
                         display: { xs: 'none', sm: 'flex' },
                         flexDirection: 'column',
                         gap: 1,
-                        mt: 2
+                        mt: 8
                     }}
                 >
                     <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/faq'>

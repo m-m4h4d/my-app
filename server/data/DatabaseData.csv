@@ -11,8 +11,8 @@ BGU_Uniprot1444,BGU,Irinotecan,beta-glucuronidase,>sp|Q1G9Z4|BGAL_LACDA,Chemores
 GUST_Uniprot5,GUST,Irinotecan,glucuronosyltransferase,>sp|A4F7P3|ERYC3_SACEN,Chmoresistance/chemosenstivity
 DTI_Uniprot144,DTI,Irinotecan,DNA-Topoisomerase,>tr|A0A034T6J9|A0A034T6J9_9GAMM,cofactor
 BUTY_Uniprot24,BUTY,Oxaliplatin,Butyrate,>sp|P50457|PUUE_ECOLI,Chemoresistance
-HOG_Uniprot184,HOG,Riluzole,hydroxyglutarate,>tr|A0A2P5GNM2|A0A2P5GNM2_9ENTR,Chemoresistance
-HDA_Uniprot9,HDA,Romidepsin,Histone deacetylase,>sp|Q9HXM1|HDAH_PSEAE,Chemoresistance
+HOG_Uniprot184,HOG,Irinotecan,hydroxyglutarate,>tr|A0A2P5GNM2|A0A2P5GNM2_9ENTR,Chemoresistance
+HDA_Uniprot9,HDA,Gemcitabine,Histone deacetylase,>sp|Q9HXM1|HDAH_PSEAE,Chemoresistance
 CDS_Uniprot10,CDS,Gemictabine,cysteine_desulfurase,>sp|P27838|CYAY_ECOLI,Chemoresistance
 DOC_Uniprot1605,DOC,Gemictabine,deoxycytidine kinase,>tr|T5HI74|T5HI74_BACLI,Chemoresistance
 DUTP_Uniprot24,DUTP,Capecitabine,dUTP diphosphatase,>tr|A0A0E1CFE3|A0A0E1CFE3_KLEPN,chemoresistance

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Container, Stack, TextField, Typography, Menu, MenuItem, styled, TableContainer, Paper, Table, TableCell, TableHead, TableRow, TableFooter, TablePagination, useTheme, IconButton, TableBody, alpha, CircularProgress } from '@mui/material';
-import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight, FirstPage, LastPage } from '@mui/icons-material';
+import { KeyboardArrowDown, KeyboardArrowLeft, KeyboardArrowRight, FirstPage, LastPage, KeyboardArrowUp } from '@mui/icons-material';
 import axios from 'axios';
 
 function TablePaginationActions(props) {
@@ -102,13 +102,9 @@ const StyledMenu = styled((props) => (
 }));
 
 const drugs = [
-    { name: 'Capecitabine' },
-    { name: 'FU' },
-    { name: 'Gemictabine' },
-    { name: 'Irinotecan' },
-    { name: 'Oxaliplatin' },
-    { name: 'Riluzole' },
-    { name: 'Romidepsin' }
+    { name: 'Drug' },
+    { name: 'Effect' },
+    { name: 'Gene Type' }
 ];
 
 export default function Search() {
@@ -252,9 +248,9 @@ export default function Search() {
                     Search page allows a keyword search against the sequences of MiCK database.
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                    Select a drug in the drop-down menu or type keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin.
+                    Select a search criteria in the drop-down menu and search using keywords.
                 </Typography>
-                <Stack useFlexGap spacing={2} sx={{ width: { xs: '100%', sm: '90%' } }}>
+                <Stack useFlexGap spacing={2} sx={{ width: '100%' }}>
                     <Stack
                         direction={{ xs: 'column', sm: 'row' }}
                         alignSelf="center"
@@ -270,7 +266,8 @@ export default function Search() {
                                 variant="contained"
                                 disableElevation
                                 onClick={handleClick}
-                                endIcon={<KeyboardArrowDown />}
+                                endIcon={open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                                sx={{ width: 140, justifyContent: 'space-between' }}
                             >
                                 {selectedDrug}
                             </Button>
@@ -295,13 +292,13 @@ export default function Search() {
                             fullWidth
                             size='medium'
                             variant="outlined"
-                            aria-label="Type Keywords..."
-                            placeholder="Type Keywords..."
+                            aria-label="Type Keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin..."
+                            placeholder="Type Keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin..."
                             value={args}
                             onChange={(event) => setArgs(event.target.value)}
                             inputProps={{
                                 autoComplete: 'on',
-                                'aria-label': 'Type Keywords...',
+                                'aria-label': 'Type Keywords like 5-FU, Irinotecan, Capecitabine, Gemcitabine, or Oxaliplatin...',
                             }}
                         />
                         <Button variant="contained" color="primary" onClick={handleSearch}>
