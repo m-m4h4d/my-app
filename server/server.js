@@ -29,9 +29,7 @@ app.get('/search', (req, res) => {
             if ((query === 'Drug' && data.Drug.toLowerCase().includes(keywords)) &&
                 (query === 'Effect' && data.Effect.toLowerCase().includes(keywords)) &&
                 (query === 'Gene Type' && data.Type.toLowerCase().includes(keywords)) &&
-                (query === '' && keywords === '') && data.Drug.toLowerCase().includes(keywords) &&
-                data.Effect.toLowerCase().includes(keywords) && data.Type.toLowerCase().includes(keywords) &&
-                data.FullName.toLowerCase().includes(keywords) && data.AccessionNo.toLowerCase().includes(keywords)) {
+                (query === '' && keywords === '')) {
                 if (count >= page * limit && count < (page + 2) * (limit * 2)) {
                     results.push(data);
                 }
