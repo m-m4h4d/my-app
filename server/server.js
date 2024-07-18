@@ -26,11 +26,36 @@ app.get('/search', (req, res) => {
     fs.createReadStream(path.join(__dirname, 'data', 'Database_Data.csv'))
         .pipe(csv())
         .on('data', (data) => {
-            if ((query === 'Drug' && data.Drug.toLowerCase().includes(keywords)) &&
-                (query === 'Effect' && data.Effect.toLowerCase().includes(keywords)) &&
-                (query === 'Gene Type' && data.Type.toLowerCase().includes(keywords)) &&
-                (query === '' && keywords === '') || data.Drug.toLowerCase().includes(keywords)) {
-                if (count >= page * limit && count < (page + 2) * (limit * 2)) {
+            let match = false;
+
+            switch (query) {
+                case 'drug':
+                    if (data.Drug.toLowerCase().includes(keywords)) {
+                        match = true;
+                    }
+                    break;
+                case 'effect':
+                    if (data.Effect.toLowerCase().includes(keywords)) {
+                        match = true;
+                    }
+                    break;
+                case 'gene type':
+                    if (data.Type.toLowerCase().includes(keywords)) {
+                        match = true;
+                    }
+                    break;
+                default:
+                    if (keywords === '' || data.Drug.toLowerCase().includes(keywords) ||
+                        data.Effect.toLowerCase().includes(keywords) ||
+                        data.Type.toLowerCase().includes(keywords) ||
+                        data.AccessionNo.toLowerCase().includes(keywords)) {
+                        match = true;
+                    }
+                    break;
+            }
+
+            if (match) {
+                if (count >= page * limit && count < (page + 1) * limit) {
                     results.push(data);
                 }
                 count++;
