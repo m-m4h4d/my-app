@@ -61,9 +61,6 @@ export default function Footer() {
                         mt: 8
                     }}
                 >
-                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/'>
-                        Home
-                    </MuiLink>
                     <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/search'>
                         Search
                     </MuiLink>
@@ -84,9 +81,6 @@ export default function Footer() {
                 >
                     <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/faq'>
                         FAQs
-                    </MuiLink>
-                    <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/team'>
-                        Team
                     </MuiLink>
                     <MuiLink color="text.secondary" sx={{ cursor: 'pointer' }} component={Link} to='/stats'>
                         Statistics

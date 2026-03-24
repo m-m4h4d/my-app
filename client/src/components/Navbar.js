@@ -133,14 +133,6 @@ function Navbar({ mode, toggleColorMode }) {
                                         About Us
                                     </Typography>
                                 </MenuItem>
-                                <MenuItem
-                                    component={Link} to="/team" underline="none"
-                                    sx={{ py: '6px', px: '12px' }}
-                                >
-                                    <Typography variant="body2" color="text.primary">
-                                        Team
-                                    </Typography>
-                                </MenuItem>
                             </Box>
                         </Box>
                         <Box
@@ -204,9 +196,6 @@ function Navbar({ mode, toggleColorMode }) {
                                     </MenuItem>
                                     <MenuItem component={Link} to="/about" underline="none">
                                         About Us
-                                    </MenuItem>
-                                    <MenuItem component={Link} to="/team" underline="none">
-                                        Team
                                     </MenuItem>
                                 </Box>
                             </Drawer>
