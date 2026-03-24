@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Divider } from '@mui/material';
-import { Navbar, Hero, Statistics, Downloads, Search, Team, FAQ, Footer, About, Highlights } from './components';
+import { Navbar, Hero, Statistics, Downloads, Search, FAQ, Footer, About, Highlights } from './components';
 import getLPTheme from './getLPTheme';
 
 export default function LandingPage() {
@@ -25,7 +25,6 @@ export default function LandingPage() {
                     <Route path="/highlights" element={<Highlights />} />
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/team" element={<Team />} />
                 </Routes>
                 <Divider />
                 <Footer />
