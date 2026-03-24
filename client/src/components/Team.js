@@ -1,29 +1,12 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, Typography, Box, Container, Grid } from '@mui/material';
-import { Download, Principal, Author, Husnain } from '../images';
 
 const members = [
     {
-        avatar: Author,
+        avatar: "",
         name: 'Muhammad Shahzaib',
         occupation: 'Author',
         email: "kshahzaib9937 (at) gmail.com"
-    },
-    {
-        avatar: Principal,
-        name: 'Dr. Masood Ur Rehman Kayani',
-        occupation: 'Principal Investigator',
-        email: "m.kayani (at) sines.nust.edu.pk"
-    },
-    {
-        avatar: Husnain,
-        name: 'Muhammad Hasnain Zubair',
-        occupation: 'Database Developer'
-    },
-    {
-        avatar: Download,
-        name: 'Dr. Farzana Jabeen',
-        occupation: 'Lead Web Developer'
     },
 ];
 

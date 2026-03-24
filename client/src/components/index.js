@@ -6,7 +6,6 @@ import Highlights from "./Highlights";
 import ToggleColorMode from "./ToggleColorMode";
 import Statistics from "./Statistics";
 import About from "./About";
-import Team from "./Team";
 import Downloads from "./Downloads";
 import Search from "./Search";
 
@@ -16,7 +15,6 @@ export {
     Footer,
     Hero,
     Highlights,
-    Team,
     ToggleColorMode,
     Statistics,
     About,
